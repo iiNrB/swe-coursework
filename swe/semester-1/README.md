@@ -2,7 +2,8 @@
 
 Started October 2026. Courses below, per the department's Academic
 Catalogue (see [../../syllabus](../../syllabus)). Dates/exams/breaks are
-in the [Academic Calendar](../academic-calendar/).
+in the [Academic Calendar](../academic-calendar/). Weekly timing is in
+the [Class Routine](class-routine.md).
 
 | Course | Code | Credit |
 |---|---|---|
@@ -20,5 +21,6 @@ Each course folder follows the same layout:
 - `syllabus-routine-notice.md` — this course's syllabus, class routine, and notices
 - `notes/` — generated notes/PDFs, formatted per [../templates/note-format.md](../templates/note-format.md), colored per [../colors.md](../colors.md)
 
-No class slides, books, or course-specific syllabus/routine have been
-uploaded yet — folders are set up ahead of time, ready to fill in.
+No class slides or books have been uploaded yet for any course — folders
+are set up ahead of time, ready to fill in. Routine and Google Classroom
+codes are already filled in per course.

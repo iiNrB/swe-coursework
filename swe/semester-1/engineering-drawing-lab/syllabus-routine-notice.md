@@ -4,7 +4,10 @@
 _(not yet provided)_
 
 ## Class Routine
-_(not yet provided)_
+Tue, Periods 1–2 · Room L-5 · Teacher AA — alternates with Phy 4144 Lab
+by section (A/B swap)
+
+Full semester routine: [../class-routine.md](../class-routine.md)
 
 ## Notices
-_(none yet)_
+No Google Classroom code shared for this course yet (code CSE 4104).

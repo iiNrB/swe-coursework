@@ -4,7 +4,9 @@
 _(not yet provided)_
 
 ## Class Routine
-_(not yet provided)_
+Tue, Periods 3–4 (100 min) · Room R-302 · Teacher ARMK
+
+Full semester routine: [../class-routine.md](../class-routine.md)
 
 ## Notices
-_(none yet)_
+- Google Classroom code: `px4uhs5y`
