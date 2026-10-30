@@ -1,7 +1,14 @@
 # Structured Programming I — Syllabus, Routine & Notice
 
 ## Syllabus
-_(not yet provided)_
+Full OBE course outline (weekly plan, grading, CO/PO mapping): [course-outline.pdf](course-outline.pdf)
+
+Assessment: Attendance 10% · Quiz/Viva 30% (best 3 of 4) · Mid Exam 30% ·
+Final Exam 30%.
+
+Teacher: Shahriar Ivan — Room 502, Academic Building 2. Consulting hours:
+Thu 10 a.m.–12 p.m., Sat 10 a.m.–11 p.m. (on request) — as printed in the
+outline; likely means 11 a.m., worth confirming with the teacher.
 
 ## Class Routine
 **Theory (CSE 4107):** Wed, Period 2 (9:15–10:30) · Room R-510 · Teacher SI
