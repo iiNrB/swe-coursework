@@ -8,6 +8,10 @@ Board meeting (09 Oct 2026). Source images:
 (kept for reference — a few dates shifted between draft and final; the
 table below uses the **official/final** version).
 
+[Year-at-a-Glance Grid](year-at-a-glance.html) — color-coded weekday-grid
+view of this whole table (class/exam/break/holiday), in the style of a
+yearly wall calendar.
+
 ## Winter Semester
 
 | Activity | Date / Period | Duration |
