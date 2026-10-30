@@ -1,4 +1,5 @@
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="color-scheme" content="light">
 <title>SWE Semester 1 Routine</title>
 <style>
 /* layout: left time rail + 5 weekday columns in a CSS grid; each course cell
@@ -74,6 +75,11 @@ h1{
   font-size:10px; letter-spacing:.02em; padding:2px 4px; line-height:1.25;
 }
 footer{margin-top:22px; font-size:12px; color:var(--muted); line-height:1.6}
+@media print{
+  body{padding:0 10px; background:#fff}
+  .scroller{overflow:visible}
+  .grid{min-width:0}
+}
 </style>
 
 <div class="wrap">
@@ -88,7 +94,7 @@ footer{margin-top:22px; font-size:12px; color:var(--muted); line-height:1.6}
     <div class="chip"><span class="dot" style="background:var(--physics)"></span>Phy 4143/4144</div>
     <div class="chip"><span class="dot" style="background:var(--drawing)"></span>CSE 4104</div>
     <div class="chip"><span class="dot" style="background:var(--arabic)"></span>Hum 4142</div>
-    <div class="chip"><span class="dot" style="background:var(--other)"></span>Other (not your course)</div>
+    <div class="chip"><span class="dot" style="background:var(--other)"></span>Other (Programming Training)</div>
   </div>
 
   <div class="scroller">
@@ -158,10 +164,7 @@ footer{margin-top:22px; font-size:12px; color:var(--muted); line-height:1.6}
     </div>
     <div class="cell"><div class="course" style="background:var(--physics)"><span class="name">Phy 4143</span><span class="meta">R-105 AB3 · SHU</span></div></div>
     <div class="cell" style="grid-row:span 2">
-      <div class="split">
-        <div class="course" style="background:var(--other)"><span class="name">Programming Training</span><span class="meta">R-301 · C1S1/C1S2/SW1</span></div>
-        <div class="course" style="background:var(--other)"><span class="name">Hum 4144 (English I)</span><span class="meta">R-508 · ZH · other section</span></div>
-      </div>
+      <div class="course" style="background:var(--other); height:100%"><span class="name">Programming Training</span><span class="meta">R-301 · C1S1/C1S2/SW1</span></div>
     </div>
     <div class="cell"></div>
     <div class="cell"></div>
