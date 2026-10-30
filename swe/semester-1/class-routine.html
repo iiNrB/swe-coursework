@@ -1,0 +1,174 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>SWE Semester 1 Routine</title>
+<style>
+/* layout: left time rail + 5 weekday columns in a CSS grid; each course cell
+   carries its registered accent color as a left bar + tinted fill */
+:root{
+  --bg:#F7F5F1; --surface:#FFFFFF; --ink:#211D18; --muted:#6B6358; --line:#E4DFD6;
+  --islamiat:#2E7D32; --tes:#6D4C41; --math:#1565C0; --physics:#EF6C00;
+  --prog:#6A1B9A; --swe:#00838F; --drawing:#C62828; --arabic:#F9A825; --other:#8A8578;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); margin:0;
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:28px 40px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap');
+.wrap{max-width:1180px;margin:0 auto}
+h1{
+  font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700;
+  font-size:clamp(22px,4vw,30px); margin:0 0 4px; letter-spacing:-0.01em;
+}
+.sub{color:var(--muted); font-size:14px; margin:0 0 20px}
+.legend{display:flex; flex-wrap:wrap; gap:8px 14px; margin-bottom:22px}
+.chip{display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--muted)}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.grid{
+  display:grid; grid-template-columns: 76px repeat(5, minmax(120px,1fr));
+  border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--surface);
+  min-width:640px;
+}
+.scroller{overflow-x:auto; padding-bottom:4px}
+.cell{border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:8px}
+.cell:last-child{border-right:none}
+.head{
+  font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px;
+  text-align:center; padding:10px 6px; background:var(--surface); position:sticky; top:0;
+}
+.timecell{
+  display:flex; flex-direction:column; justify-content:center; align-items:flex-end;
+  padding-right:10px; background:var(--surface);
+}
+.timecell .p{font-weight:700; font-size:13px; font-variant-numeric:tabular-nums}
+.timecell .t{font-size:10.5px; color:var(--muted); font-variant-numeric:tabular-nums}
+.breakrow{background:var(--surface); color:var(--muted); font-size:11.5px; text-align:center;
+  padding:6px; letter-spacing:.04em; text-transform:uppercase; grid-column:1/-1;
+  border-bottom:1px solid var(--line); border-top:1px solid var(--line);
+}
+.course{
+  height:100%; border-radius:8px; padding:8px 9px; display:flex; flex-direction:column;
+  gap:2px; color:#fff;
+}
+.course .name{font-weight:700; font-size:12.5px; line-height:1.2}
+.course .meta{font-size:10.5px; opacity:.92; line-height:1.3}
+.split{display:flex; flex-direction:column; gap:4px; height:100%}
+.split .course{flex:1}
+.empty{height:100%}
+footer{margin-top:22px; font-size:12px; color:var(--muted); line-height:1.6}
+</style>
+
+<div class="wrap">
+  <h1>BSc SWE — 1st Semester Routine</h1>
+  <p class="sub">Islamic University of Technology · Dept. of CSE · colors match each course's notes & PDFs</p>
+
+  <div class="legend">
+    <div class="chip"><span class="dot" style="background:var(--swe)"></span>SWE 4101</div>
+    <div class="chip"><span class="dot" style="background:var(--tes)"></span>Hum 4147</div>
+    <div class="chip"><span class="dot" style="background:var(--islamiat)"></span>Hum 4145</div>
+    <div class="chip"><span class="dot" style="background:var(--prog)"></span>CSE 4107/4108</div>
+    <div class="chip"><span class="dot" style="background:var(--physics)"></span>Phy 4143/4144</div>
+    <div class="chip"><span class="dot" style="background:var(--drawing)"></span>CSE 4104</div>
+    <div class="chip"><span class="dot" style="background:var(--arabic)"></span>Hum 4142</div>
+    <div class="chip"><span class="dot" style="background:var(--other)"></span>Other (not your course)</div>
+  </div>
+
+  <div class="scroller">
+  <div class="grid">
+    <div class="cell head"></div>
+    <div class="cell head">Mon</div>
+    <div class="cell head">Tue</div>
+    <div class="cell head">Wed</div>
+    <div class="cell head">Thu</div>
+    <div class="cell head">Fri</div>
+
+    <!-- Period 1 -->
+    <div class="cell timecell"><span class="p">1</span><span class="t">8:00–9:15</span></div>
+    <div class="cell"><div class="course" style="background:var(--swe)"><span class="name">SWE 4101</span><span class="meta">R-510 · SAH</span></div></div>
+    <div class="cell">
+      <div class="split">
+        <div class="course" style="background:var(--physics)"><span class="name">Phy 4144 (A)</span><span class="meta">L-Meas. AB1</span></div>
+        <div class="course" style="background:var(--drawing)"><span class="name">CSE 4104 (B)</span><span class="meta">L-5 · AA</span></div>
+      </div>
+    </div>
+    <div class="cell"><div class="course" style="background:var(--tes)"><span class="name">Hum 4147</span><span class="meta">R-510 · BS</span></div></div>
+    <div class="cell"><div class="course" style="background:var(--swe)"><span class="name">SWE 4101</span><span class="meta">R-508 · SAH</span></div></div>
+    <div class="cell" style="grid-row:span 2">
+      <div class="course" style="background:var(--math); height:100%"><span class="name">Math 4141</span><span class="meta">100 min · R-105 AB3 · MTM</span></div>
+    </div>
+
+    <!-- Period 2 -->
+    <div class="cell timecell"><span class="p">2</span><span class="t">9:15–10:30</span></div>
+    <div class="cell"><div class="course" style="background:var(--tes)"><span class="name">Hum 4147</span><span class="meta">R-510 · BS</span></div></div>
+    <div class="cell">
+      <div class="split">
+        <div class="course" style="background:var(--drawing)"><span class="name">CSE 4104 (A)</span><span class="meta">L-5 · AA</span></div>
+        <div class="course" style="background:var(--physics)"><span class="name">Phy 4144 (B)</span><span class="meta">L-Meas. AB1</span></div>
+      </div>
+    </div>
+    <div class="cell"><div class="course" style="background:var(--prog)"><span class="name">CSE 4107</span><span class="meta">R-510 · SI</span></div></div>
+    <div class="cell"><div class="course" style="background:var(--physics)"><span class="name">Phy 4143</span><span class="meta">R-508 · SHU</span></div></div>
+
+    <!-- Period 3 -->
+    <div class="cell timecell"><span class="p">3</span><span class="t">10:30–11:45</span></div>
+    <div class="cell" style="grid-row:span 2">
+      <div class="course" style="background:var(--islamiat); height:100%"><span class="name">Hum 4145</span><span class="meta">100 min · R-508 · MMH</span></div>
+    </div>
+    <div class="cell" style="grid-row:span 2">
+      <div class="course" style="background:var(--arabic); height:100%"><span class="name">Hum 4142 (Arabic I)</span><span class="meta">100 min · R-302 · ARMK</span></div>
+    </div>
+    <div class="cell" style="grid-row:span 2">
+      <div class="course" style="background:var(--math); height:100%"><span class="name">Math 4141</span><span class="meta">100 min · R-510 · MTM</span></div>
+    </div>
+    <div class="cell"><div class="empty"></div></div>
+    <div class="cell"><div class="course" style="background:var(--prog)"><span class="name">CSE 4108 (Sec A)</span><span class="meta">L-2 · SI / MIA</span></div></div>
+
+    <!-- Period 4 -->
+    <div class="cell timecell"><span class="p">4</span><span class="t">11:45–13:00</span></div>
+    <div class="cell"><div class="course" style="background:var(--prog)"><span class="name">CSE 4107</span><span class="meta">R-510 · SI</span></div></div>
+    <div class="cell"></div>
+
+    <!-- Break -->
+    <div class="breakrow">Lunch &amp; Prayer Break · 13:00–14:30</div>
+
+    <!-- Period 5 -->
+    <div class="cell timecell"><span class="p">5</span><span class="t">14:30–15:45</span></div>
+    <div class="cell" style="grid-row:span 2">
+      <div class="course" style="background:var(--prog); height:100%"><span class="name">CSE 4108 (Sec B)</span><span class="meta">L-2 · SI / MIA</span></div>
+    </div>
+    <div class="cell"><div class="course" style="background:var(--physics)"><span class="name">Phy 4143</span><span class="meta">R-105 AB3 · SHU</span></div></div>
+    <div class="cell" style="grid-row:span 2">
+      <div class="split">
+        <div class="course" style="background:var(--other)"><span class="name">Programming Training</span><span class="meta">R-301 · C1S1/C1S2/SW1</span></div>
+        <div class="course" style="background:var(--other)"><span class="name">Hum 4144 (English I)</span><span class="meta">R-508 · ZH · other section</span></div>
+      </div>
+    </div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+
+    <!-- Period 6 -->
+    <div class="cell timecell"><span class="p">6</span><span class="t">15:45–17:00</span></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+  </div>
+  </div>
+
+  <footer>
+    Source: official class routine + Google Classroom notice, 1st semester (started 26 Oct 2026).
+    Section A/B alternate between Phy 4144 Lab and CSE 4104 Lab each Tuesday. Full details,
+    codes and per-course notes live in each course's <code>syllabus-routine-notice.md</code> in
+    the repo.
+  </footer>
+</div>
