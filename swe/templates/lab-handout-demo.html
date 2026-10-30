@@ -1,0 +1,123 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Lab Handout Format Demo</title>
+<style>
+:root{
+  --bg:#F7F5F1; --surface:#FFFFFF; --ink:#211D18; --muted:#6B6358; --line:#D8D2C4; --accent:#6A1B9A;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26; color-scheme: dark; }
+}
+:root[data-theme="dark"]{ --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26; color-scheme: dark; }
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+body{
+  background:var(--bg); color:var(--ink); margin:0;
+  font-family:'Hind Siliguri',system-ui,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:24px 32px;
+}
+.wrap{max-width:650px;margin:0 auto}
+h1{font-size:clamp(18px,4vw,22px); margin:0 0 4px}
+.sub{color:var(--muted); font-size:13px; margin:0 0 16px}
+
+.page-header{
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  margin-bottom:3mm; padding-bottom:2mm; border-bottom:2px solid var(--accent);
+}
+.ph-left{display:flex; align-items:center; gap:8px}
+.lab-badge{
+  font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.08em;
+  background:var(--accent); color:#fff; padding:3px 12px; border-radius:4px;
+}
+.ph-title{font-size:11px; font-weight:700; color:var(--ink)}
+.ph-right{color:var(--muted); font-size:10px}
+
+.page{display:flex; flex-direction:column; gap:3mm}
+.row{display:flex; gap:4mm; height:87mm}
+.slide{
+  width:154mm; height:87mm; flex:none;
+  border:1.5px solid var(--ink); border-radius:3px;
+  padding:9px 11px; display:flex; flex-direction:column; gap:5px;
+  background:var(--surface); overflow:hidden; position:relative;
+}
+.slide .num{font-size:12px; color:var(--muted); font-weight:600}
+.slide .title{font-size:14.5px; font-weight:700; line-height:1.25}
+.slide ul{margin:0; padding-left:14px; font-size:10.5px; line-height:1.55; color:var(--muted)}
+.slide code{font-family:'JetBrains Mono',monospace; font-size:9.5px; background:color-mix(in srgb, var(--accent) 8%, var(--surface)); padding:1px 4px; border-radius:2px}
+
+.practice{
+  flex:1; height:87mm; position:relative; border-radius:3px;
+  background-color:color-mix(in srgb, var(--accent) 3%, var(--surface));
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 6mm 6mm;
+}
+.practice .ptag{
+  position:absolute; top:5px; left:7px; font-family:'JetBrains Mono',monospace;
+  font-size:8px; font-weight:700; letter-spacing:.1em; color:var(--accent);
+}
+
+footer{margin-top:10px; font-size:12px; color:var(--muted); line-height:1.6; max-width:560px; margin-inline:auto}
+@page{ size: A4 portrait; margin: 4mm 6mm; }
+@media print{
+  body{padding:0 10px; background:#fff}
+  h1{font-size:11px; margin-bottom:0}
+  .sub{font-size:7px; margin-bottom:1px; line-height:1.3}
+  .page-header{margin-bottom:1.5mm; padding-bottom:1mm}
+  .page{gap:2mm}
+  footer{font-size:7px; margin-top:2px; line-height:1.3}
+}
+</style>
+
+<div class="wrap">
+  <h1>ল্যাব হ্যান্ডআউট ফরম্যাট — ডেমো (তুলনার জন্য)</h1>
+  <p class="sub">থিওরি হ্যান্ডআউট (ruled note-lines) থেকে ভিন্ন করতে: পার্পল "LAB" ব্যাজ + প্রতি পেজে হেডার লেবেল, আর নোট-লাইনের বদলে dot-grid "CODE PRACTICE" এরিয়া (কোড লেখার জন্য বেশি জায়গা, ইনডেন্টেশন সহজে মিলানো যায়)।</p>
+
+  <div class="page-header">
+    <div class="ph-left"><span class="lab-badge">LAB</span><span class="ph-title">CSE 4108 — Structured Programming I Lab</span></div>
+    <div class="ph-right">Page 1 of 1 · Demo</div>
+  </div>
+
+  <div class="page">
+    <div class="row">
+      <div class="slide">
+        <span class="num">১</span>
+        <div class="title">Lab 1 — Hello World &amp; Compilation</div>
+        <ul>
+          <li>Write, compile (<code>gcc file.c -o out</code>) and run your first C program</li>
+          <li>Understand <code>#include</code>, <code>main()</code>, <code>return 0</code></li>
+        </ul>
+      </div>
+      <div class="practice"><span class="ptag">CODE PRACTICE</span></div>
+    </div>
+    <div class="row">
+      <div class="slide">
+        <span class="num">২</span>
+        <div class="title">Lab 1 — Variables &amp; printf/scanf</div>
+        <ul>
+          <li>Declare <code>int</code>, <code>float</code>, <code>char</code> variables</li>
+          <li>Take input with <code>scanf</code>, print with <code>printf</code></li>
+        </ul>
+      </div>
+      <div class="practice"><span class="ptag">CODE PRACTICE</span></div>
+    </div>
+    <div class="row">
+      <div class="slide">
+        <span class="num">৩</span>
+        <div class="title">Lab 1 — Operators &amp; Expressions</div>
+        <ul>
+          <li>Arithmetic, relational, logical operators</li>
+          <li>Practice: write a simple calculator program</li>
+        </ul>
+      </div>
+      <div class="practice"><span class="ptag">CODE PRACTICE</span></div>
+    </div>
+  </div>
+
+  <footer>
+    তুলনা: থিওরি (CSE 4107) হ্যান্ডআউটে ডান পাশে lined নোট-স্পেস থাকে (SWE4101-এর মতো), এই ল্যাব
+    ভার্সনে সেটার বদলে dot-grid "Code Practice" বক্স + বড় পার্পল "LAB" ব্যাজ দিয়ে আলাদা করা হয়েছে।
+    একই পেজে ৩টা স্লাইড (থিওরি ফরম্যাটের মতোই)। ঠিক আছে মনে হলে বলো, এই ফরম্যাটে CSE 4107/4108-এর
+    স্লাইড থেকে আসল হ্যান্ডআউট বানিয়ে দেব।
+  </footer>
+</div>
