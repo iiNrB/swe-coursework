@@ -1,0 +1,257 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>IUT Academic Calendar 2026-27</title>
+<style>
+/* Layout: sticky-month-label grid, 13 month rows x weekday-aligned day columns, horizontally scrollable. Dark-first, single theme. */
+:root{
+  --bg:#13161B; --surface:#1B1F26; --ink:#EDEAE2; --muted:#9CA3AF; --line:#30353F;
+  --accent:#6FA8C9; --accent-soft:#1E2E38;
+  --class:#1F242C; --exam:#8A6A1E; --break:#2E5570; --post:#5A4A7A; --holiday:#A83A3A; --weekend:#262B33; --muted-cell:#1A1E24;
+  --font-display:'Fraunces',serif; --font-body:'Inter',system-ui,sans-serif; --font-mono:'JetBrains Mono',monospace;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&family=JetBrains+Mono:wght@500;600&display=swap');
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:20px 40px;
+}
+.wrap{max-width:1200px; margin:0 auto}
+
+header{margin-bottom:18px}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 6px}
+h1{font-family:var(--font-display); font-weight:600; font-size:clamp(22px,4vw,30px); margin:0 0 6px; text-wrap:balance}
+.sub{color:var(--muted); font-size:13.5px; margin:0; max-width:65ch; line-height:1.55}
+
+.legend{
+  display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0 20px; padding:12px 14px;
+  background:var(--surface); border:1px solid var(--line); border-radius:8px;
+}
+.legend-item{display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink)}
+.swatch{width:13px; height:13px; border-radius:3px; border:1px solid var(--line); flex:none}
+
+.grid-shell{
+  background:var(--surface); border:1px solid var(--line); border-radius:8px; overflow:hidden;
+}
+.grid-scroll{overflow-x:auto}
+table{border-collapse:collapse; font-family:var(--font-mono)}
+.month-col{
+  position:sticky; left:0; z-index:2; background:var(--surface);
+  border-right:1.5px solid var(--line); text-align:left; padding:6px 12px;
+  font-family:var(--font-body); font-weight:600; font-size:12.5px; white-space:nowrap;
+}
+thead .month-col{background:var(--accent-soft); color:var(--accent); z-index:3}
+th.day-col{
+  font-size:9.5px; font-weight:600; color:var(--muted); text-align:center; padding:4px 0;
+  width:24px; min-width:24px; background:var(--accent-soft); border-bottom:1.5px solid var(--line);
+}
+td.day-cell{
+  width:24px; min-width:24px; height:26px; text-align:center; font-size:10.5px; font-weight:600;
+  border:1px solid var(--line); color:var(--ink); cursor:default;
+  font-variant-numeric: tabular-nums;
+}
+td.day-cell.empty{background:var(--surface); border-color:transparent}
+td.day-cell.class{background:var(--class)}
+td.day-cell.exam{background:var(--exam); color:#120D01}
+td.day-cell.break{background:var(--break); color:#E8F2F8}
+td.day-cell.post{background:var(--post); color:#F2EEFA}
+td.day-cell.weekend{background:var(--weekend); color:var(--muted)}
+td.day-cell.muted{background:var(--muted-cell); color:var(--muted)}
+td.day-cell.holiday{background:var(--holiday); color:#fff}
+td.day-cell.nextyear{background:var(--accent); color:#0D1418}
+tbody tr:hover td.day-cell:not(.empty){filter:brightness(1.12)}
+
+.notes{
+  margin-top:22px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px;
+}
+.note-card{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 16px}
+.note-card h2{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 10px; font-family:var(--font-mono); font-weight:600}
+.note-card ul{margin:0; padding:0; list-style:none}
+.note-card li{display:flex; justify-content:space-between; gap:10px; padding:4px 0; font-size:12.5px; border-bottom:1px dashed var(--line)}
+.note-card li:last-child{border-bottom:none}
+.note-card .d{color:var(--muted); font-family:var(--font-mono); font-size:11.5px; white-space:nowrap}
+
+footer{margin-top:20px; font-size:11.5px; color:var(--muted); line-height:1.6}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Islamic University of Technology · OIC</p>
+    <h1>Academic Calendar — 2025–2026 Session</h1>
+    <p class="sub">Per official notification no. ACD/01.10/39 (15 Oct 2026). Winter Semester runs 26 Oct 2026 – 19 Mar 2027, Summer Semester 22 Mar – 13 Aug 2027, followed by post-academic activities and the year-end break, with the next academic year starting 25 Oct 2027.</p>
+  </header>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="grid-shell">
+    <div class="grid-scroll">
+      <table id="grid"></table>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="note-card">
+      <h2>Approved Holidays</h2>
+      <ul id="holiday-list"></ul>
+    </div>
+    <div class="note-card">
+      <h2>Semester Schedule</h2>
+      <ul id="period-list"></ul>
+    </div>
+  </div>
+
+  <footer>* Subject to moon sighting. Semester 1 is currently in Classes – First Phase (26 Oct – 11 Dec 2026).</footer>
+</div>
+
+<script>
+(function(){
+  const pad = n => String(n).padStart(2,'0');
+  const iso = (y,m,d) => `${y}-${pad(m+1)}-${pad(d)}`;
+
+  const months = [
+    {y:2026,m:9, label:'October 2026'},
+    {y:2026,m:10,label:'November 2026'},
+    {y:2026,m:11,label:'December 2026'},
+    {y:2027,m:0, label:'January 2027'},
+    {y:2027,m:1, label:'February 2027'},
+    {y:2027,m:2, label:'March 2027'},
+    {y:2027,m:3, label:'April 2027'},
+    {y:2027,m:4, label:'May 2027'},
+    {y:2027,m:5, label:'June 2027'},
+    {y:2027,m:6, label:'July 2027'},
+    {y:2027,m:7, label:'August 2027'},
+    {y:2027,m:8, label:'September 2027'},
+    {y:2027,m:9, label:'October 2027'},
+  ];
+
+  const periods = [
+    {start:'2026-10-26', end:'2026-12-11', cat:'class',  label:'Classes — Phase 1 (Winter)'},
+    {start:'2026-12-14', end:'2026-12-25', cat:'exam',   label:'Mid-Semester Exam (Winter)'},
+    {start:'2026-12-28', end:'2027-02-12', cat:'class',  label:'Classes — Phase 2 (Winter)'},
+    {start:'2027-02-15', end:'2027-02-26', cat:'exam',   label:'Semester Final (Winter)'},
+    {start:'2027-03-01', end:'2027-03-19', cat:'break',  label:'Winter Semester Break'},
+    {start:'2027-03-22', end:'2027-05-07', cat:'class',  label:'Classes — Phase 1 (Summer)'},
+    {start:'2027-05-10', end:'2027-05-21', cat:'break',  label:'Eid-ul-Adha Vacation'},
+    {start:'2027-05-24', end:'2027-06-04', cat:'exam',   label:'Mid-Semester Exam (Summer)'},
+    {start:'2027-06-07', end:'2027-07-30', cat:'class',  label:'Classes — Phase 2 (Summer)'},
+    {start:'2027-08-02', end:'2027-08-13', cat:'exam',   label:'Semester Final (Summer)'},
+    {start:'2027-08-16', end:'2027-09-24', cat:'post',   label:'Short Semester / Industrial Training / Admission / Convocation'},
+    {start:'2027-09-27', end:'2027-10-22', cat:'break',  label:'Year-End Break'},
+  ];
+
+  const holidays = {
+    '2026-12-16':'Victory Day',
+    '2027-01-24':'Shab-e-Barat*',
+    '2027-02-21':'Shaheed Day & Intl. Mother Language Day',
+    '2027-03-07':'Shab-e-Qadr*',
+    '2027-03-09':'Eid-ul-Fitr*','2027-03-10':'Eid-ul-Fitr*','2027-03-11':'Eid-ul-Fitr*',
+    '2027-03-26':'Independence Day',
+    '2027-04-14':'Bangla New Year',
+    '2027-05-01':'May Day',
+    '2027-05-16':'Eid-ul-Adha*','2027-05-17':'Eid-ul-Adha*','2027-05-18':'Eid-ul-Adha*',
+    '2027-06-15':'Ashura*',
+    '2027-08-05':'Mass Uprising Day',
+    '2027-08-15':'Eid-e-Milad-un-Nabi (SM)*',
+  };
+
+  const YEAR_START = '2026-10-26';
+  const NEXT_YEAR_START = '2027-10-25';
+
+  function findPeriod(dateStr){
+    return periods.find(p => dateStr >= p.start && dateStr <= p.end);
+  }
+  function classify(dateStr, jsDay){
+    if (holidays[dateStr]) return {cat:'holiday', label:holidays[dateStr]};
+    if (dateStr === NEXT_YEAR_START) return {cat:'nextyear', label:'2026–2027 Academic Year begins'};
+    const p = findPeriod(dateStr);
+    const isWeekend = jsDay === 0 || jsDay === 6; // Sun=0, Sat=6
+    if (p){
+      if (isWeekend && (p.cat === 'class' || p.cat === 'exam')) return {cat:'weekend', label:'Weekly Holiday'};
+      return {cat:p.cat, label:p.label};
+    }
+    if (dateStr < YEAR_START) return {cat:'muted', label:''};
+    if (dateStr > NEXT_YEAR_START) return {cat:'muted', label:''};
+    return {cat:'muted', label:''};
+  }
+
+  // weekday-aligned columns: Monday=0 ... Sunday=6
+  function mondayIndex(jsDay){ return (jsDay + 6) % 7; }
+  const dayHeaders = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+  const monthMeta = months.map(mo => {
+    const daysInMonth = new Date(mo.y, mo.m+1, 0).getDate();
+    const startJsDay = new Date(mo.y, mo.m, 1).getDay();
+    const startCol = mondayIndex(startJsDay);
+    return {...mo, daysInMonth, startCol};
+  });
+  const totalCols = Math.max(...monthMeta.map(m => m.startCol + m.daysInMonth));
+
+  // build table
+  const table = document.getElementById('grid');
+  const thead = document.createElement('thead');
+  const headRow = document.createElement('tr');
+  headRow.innerHTML = '<th class="month-col">Month</th>' +
+    Array.from({length: totalCols}, (_,i) => `<th class="day-col">${dayHeaders[i%7]}</th>`).join('');
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  monthMeta.forEach(mo => {
+    const tr = document.createElement('tr');
+    let cells = `<td class="month-col">${mo.label}</td>`;
+    for (let col = 0; col < totalCols; col++){
+      const dayNum = col - mo.startCol + 1;
+      if (dayNum < 1 || dayNum > mo.daysInMonth){
+        cells += '<td class="day-cell empty"></td>';
+        continue;
+      }
+      const dateStr = iso(mo.y, mo.m, dayNum);
+      const jsDay = new Date(mo.y, mo.m, dayNum).getDay();
+      const info = classify(dateStr, jsDay);
+      const title = info.label ? `${dateStr} — ${info.label}` : dateStr;
+      cells += `<td class="day-cell ${info.cat}" title="${title}">${dayNum}</td>`;
+    }
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  // legend
+  const legendDefs = [
+    ['class','Class'], ['exam','Exam'], ['break','Semester / Vacation Break'],
+    ['post','Short Semester / Admission / Convocation'], ['holiday','Public / Religious Holiday'],
+    ['weekend','Weekly Holiday'], ['muted','Outside Academic Year'],
+  ];
+  document.getElementById('legend').innerHTML = legendDefs.map(([cat,label]) =>
+    `<span class="legend-item"><span class="swatch" style="background:var(--${cat === 'muted' ? 'muted-cell' : cat})"></span>${label}</span>`
+  ).join('');
+
+  // holiday list
+  document.getElementById('holiday-list').innerHTML = Object.entries(holidays)
+    .reduce((acc, [date,label]) => {
+      const last = acc[acc.length-1];
+      if (last && last.label === label && isNextDay(last.end, date)){ last.end = date; return acc; }
+      acc.push({start:date, end:date, label}); return acc;
+    }, [])
+    .map(r => {
+      const d = r.start === r.end ? fmt(r.start) : `${fmt(r.start)}–${fmt(r.end)}`;
+      return `<li><span>${r.label}</span><span class="d">${d}</span></li>`;
+    }).join('');
+
+  function isNextDay(a,b){
+    const da = new Date(a), db = new Date(b);
+    return (db - da) === 86400000;
+  }
+  function fmt(dateStr){
+    const [y,m,d] = dateStr.split('-').map(Number);
+    const months_en = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return `${d} ${months_en[m-1]}`;
+  }
+
+  // period list
+  document.getElementById('period-list').innerHTML = periods.map(p =>
+    `<li><span>${p.label}</span><span class="d">${fmt(p.start)}–${fmt(p.end)}</span></li>`
+  ).join('');
+})();
+</script>

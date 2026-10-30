@@ -10,7 +10,7 @@ table below uses the **official/final** version).
 
 [Year-at-a-Glance Grid](year-at-a-glance.html) — color-coded weekday-grid
 view of this whole table (class/exam/break/holiday), in the style of a
-yearly wall calendar.
+yearly wall calendar. [English / dark mode version](year-at-a-glance-en.html).
 
 ## Winter Semester
 
