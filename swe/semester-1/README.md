@@ -1,7 +1,8 @@
 # Semester 1 — B.Sc. in Software Engineering (IUT, OIC Gazipur)
 
 Started October 2026. Courses below, per the department's Academic
-Catalogue (see [../../syllabus](../../syllabus)).
+Catalogue (see [../../syllabus](../../syllabus)). Dates/exams/breaks are
+in the [Academic Calendar](../academic-calendar/).
 
 | Course | Code | Credit |
 |---|---|---|
