@@ -39,24 +39,34 @@ body{
 
 .dept{ text-align:center; font-size:11px; color:var(--course-dark); font-weight:600; letter-spacing:.06em; text-transform:uppercase }
 
-.titleblock{ text-align:center; margin:10mm 0 }
-.eyebrow{ font-size:10.5px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; margin-bottom:5px }
-.course-title{ font-size:26px; font-weight:800; line-height:1.2; color:var(--ink) }
-.course-meta{ margin-top:8px; font-size:12.5px; color:var(--muted) }
+.titleblock{ text-align:center; margin:7mm 0 }
+.eyebrow{ font-size:10px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px }
+.course-title{ font-size:21px; font-weight:800; line-height:1.2; color:var(--ink) }
+.course-meta{ margin-top:6px; font-size:11.5px; color:var(--muted) }
 .course-meta b{ color:var(--course-dark) }
 
 .credit-pill{
-  display:inline-block; margin-top:10px; padding:4px 14px; border-radius:999px;
+  display:inline-block; margin-top:8px; padding:3px 13px; border-radius:999px;
   background:color-mix(in srgb, var(--course) 14%, var(--surface)); color:var(--course-dark);
-  font-size:11px; font-weight:700; letter-spacing:.04em;
+  font-size:10.5px; font-weight:700; letter-spacing:.04em;
 }
 
-.fields{ margin-top:auto; padding:9mm 0 8mm; }
-.field{ display:flex; align-items:baseline; gap:8px; margin-bottom:7mm; font-size:12px; }
-.field .label{ color:var(--muted); font-weight:600; white-space:nowrap; min-width:22mm }
-.field .fill{ flex:1; border-bottom:1.2px solid var(--line); height:5mm }
+.section{ margin-top:7mm }
+.section-title{
+  font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--course-dark); border-bottom:1.5px solid var(--line); padding-bottom:3px; margin-bottom:5px;
+}
+.booklist{ margin:0; padding-left:15px; font-size:11px; line-height:1.55; color:var(--ink) }
+.booklist li{ margin-bottom:2px }
 
-.teacher{ text-align:center; font-size:10.5px; color:var(--muted); padding-bottom:9mm }
+.assessment{ font-size:10.5px; color:var(--muted); margin-bottom:5px }
+.synopsis-list{
+  margin:0; padding-left:15px; font-size:10.5px; line-height:1.6; color:var(--ink);
+  columns:2; column-gap:8mm;
+}
+.synopsis-list li{ break-inside:avoid; margin-bottom:1px }
+
+.teacher{ text-align:center; font-size:10px; color:var(--muted); margin-top:8mm; padding-bottom:8mm }
 .teacher b{ color:var(--ink) }
 
 @page{ size: A4 portrait; margin: 14mm; }
@@ -64,7 +74,7 @@ body{
   body{ padding:0; background:#fff }
   .wrap{ max-width:none }
   .preview-label{ display:none }
-  .sheet{ border:none; border-radius:0; max-width:none; min-height:269mm }
+  .sheet{ border:none; border-radius:0; max-width:none }
 }
 </style>
 
@@ -88,10 +98,33 @@ body{
         <div class="credit-pill">1.00 CREDIT</div>
       </div>
 
-      <div class="fields">
-        <div class="field"><span class="label">Name</span><span class="fill"></span></div>
-        <div class="field"><span class="label">Student ID</span><span class="fill"></span></div>
-        <div class="field"><span class="label">Section</span><span class="fill"></span></div>
+      <div class="section">
+        <div class="section-title">Reference Books</div>
+        <ul class="booklist">
+          <li>Computer Fundamentals — P.K. Sinha &amp; P. Sinha (8th ed.)</li>
+          <li>Software Engineering: A Practitioner's Approach — R.S. Pressman &amp; B.R. Maxim (9th ed.)</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Syllabus</div>
+        <div class="assessment">Class Participation 10% · Quizzes &amp; Assignments 30% · Mid-term 30% · Semester Final 30%</div>
+        <ol class="synopsis-list">
+          <li>Computers &amp; Basic Concepts</li>
+          <li>Hardware</li>
+          <li>Computer Architecture &amp; Number Systems</li>
+          <li>Software Concepts</li>
+          <li>Programming &amp; Language Translators</li>
+          <li>Networking &amp; Internet</li>
+          <li>Web &amp; Emerging Technologies</li>
+          <li>Intro to Software Engineering &amp; SDLC</li>
+          <li>Software Process Models</li>
+          <li>Requirements Engineering &amp; UI/UX</li>
+          <li>Software Design Basics</li>
+          <li>Software Testing</li>
+          <li>Documentation</li>
+          <li>Release &amp; Maintenance</li>
+        </ol>
       </div>
 
       <div class="teacher">Course Teacher: <b>Shohel Ahmed</b>, Assistant Professor, Dept. of CSE</div>
