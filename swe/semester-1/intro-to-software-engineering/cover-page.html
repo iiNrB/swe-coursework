@@ -1,0 +1,101 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>SWE 4101 Cover Page</title>
+<style>
+:root{
+  --course:#00838F; --course-dark:#00626b;
+  --bg:#F7F5F1; --surface:#FFFFFF; --ink:#211D18; --muted:#6B6358; --line:#D8D2C4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26; color-scheme: dark; }
+}
+:root[data-theme="dark"]{ --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26; color-scheme: dark; }
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700;800&display=swap');
+body{
+  background:var(--bg); color:var(--ink); margin:0;
+  font-family:'Libre Franklin','Hind Siliguri',system-ui,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:24px 32px;
+}
+.wrap{max-width:650px;margin:0 auto}
+.preview-label{color:var(--muted); font-size:12px; margin:0 0 10px; text-align:center}
+
+.sheet{
+  background:var(--surface); border:1px solid var(--line); border-radius:6px;
+  max-width:520px; margin:0 auto; overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.band{ height:14mm; background:var(--course); }
+.band.bottom{ height:10mm; }
+
+.content{ padding:14mm 14mm 0; flex:1; display:flex; flex-direction:column; }
+
+.univ{ text-align:center; }
+.univ .name{ font-size:13px; font-weight:700; letter-spacing:.04em; color:var(--ink) }
+.univ .sub{ font-size:10px; color:var(--muted); margin-top:2px }
+
+.divider{ height:1px; background:var(--line); margin:7mm 0 }
+
+.dept{ text-align:center; font-size:11px; color:var(--course-dark); font-weight:600; letter-spacing:.06em; text-transform:uppercase }
+
+.titleblock{ text-align:center; margin:10mm 0 }
+.eyebrow{ font-size:10.5px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; margin-bottom:5px }
+.course-title{ font-size:26px; font-weight:800; line-height:1.2; color:var(--ink) }
+.course-meta{ margin-top:8px; font-size:12.5px; color:var(--muted) }
+.course-meta b{ color:var(--course-dark) }
+
+.credit-pill{
+  display:inline-block; margin-top:10px; padding:4px 14px; border-radius:999px;
+  background:color-mix(in srgb, var(--course) 14%, var(--surface)); color:var(--course-dark);
+  font-size:11px; font-weight:700; letter-spacing:.04em;
+}
+
+.fields{ margin-top:auto; padding:9mm 0 8mm; }
+.field{ display:flex; align-items:baseline; gap:8px; margin-bottom:7mm; font-size:12px; }
+.field .label{ color:var(--muted); font-weight:600; white-space:nowrap; min-width:22mm }
+.field .fill{ flex:1; border-bottom:1.2px solid var(--line); height:5mm }
+
+.teacher{ text-align:center; font-size:10.5px; color:var(--muted); padding-bottom:9mm }
+.teacher b{ color:var(--ink) }
+
+@page{ size: A4 portrait; margin: 14mm; }
+@media print{
+  body{ padding:0; background:#fff }
+  .wrap{ max-width:none }
+  .preview-label{ display:none }
+  .sheet{ border:none; border-radius:0; max-width:none; min-height:269mm }
+}
+</style>
+
+<div class="wrap">
+  <p class="preview-label">প্রিন্ট প্রিভিউ — A4 পোর্ট্রেট, নোটবুক/খাতার কভার পেজ</p>
+  <div class="sheet">
+    <div class="band"></div>
+    <div class="content">
+      <div class="univ">
+        <div class="name">ISLAMIC UNIVERSITY OF TECHNOLOGY (IUT)</div>
+        <div class="sub">OIC · Board Bazar, Gazipur, Bangladesh</div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="dept">Dept. of Software Engineering</div>
+
+      <div class="titleblock">
+        <div class="eyebrow">Course Notebook</div>
+        <div class="course-title">Introduction to<br>Software Engineering</div>
+        <div class="course-meta">Course Code: <b>SWE 4101</b> &nbsp;·&nbsp; Semester 1, Winter 2025–2026</div>
+        <div class="credit-pill">1.00 CREDIT</div>
+      </div>
+
+      <div class="fields">
+        <div class="field"><span class="label">Name</span><span class="fill"></span></div>
+        <div class="field"><span class="label">Student ID</span><span class="fill"></span></div>
+        <div class="field"><span class="label">Section</span><span class="fill"></span></div>
+      </div>
+
+      <div class="teacher">Course Teacher: <b>Shohel Ahmed</b>, Assistant Professor, Dept. of CSE</div>
+    </div>
+    <div class="band bottom"></div>
+  </div>
+</div>
