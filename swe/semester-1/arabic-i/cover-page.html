@@ -1,0 +1,118 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Hum 4142 Cover Page</title>
+<style>
+:root{
+  --course:#F9A825; --course-dark:#8A6D00;
+  --bg:#F7F5F1; --surface:#FFFFFF; --ink:#211D18; --muted:#6B6358; --line:#D8D2C4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26; color-scheme: dark; }
+}
+:root[data-theme="dark"]{ --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26; color-scheme: dark; }
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700;800&display=swap');
+body{
+  background:var(--bg); color:var(--ink); margin:0;
+  font-family:'Libre Franklin','Hind Siliguri',system-ui,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:24px 32px;
+}
+.wrap{max-width:650px;margin:0 auto}
+.preview-label{color:var(--muted); font-size:12px; margin:0 0 10px; text-align:center}
+
+.sheet{
+  background:var(--surface); border:1px solid var(--line); border-radius:6px;
+  max-width:520px; margin:0 auto; overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.band{ height:16mm; background:var(--course); }
+.band.bottom{ height:12mm; }
+
+.content{ padding:10mm 18mm; flex:1; display:flex; flex-direction:column; justify-content:center; }
+
+.univ{ text-align:center; }
+.univ .name{ font-size:15px; font-weight:700; letter-spacing:.04em; color:var(--ink) }
+.univ .sub{ font-size:11px; color:var(--muted); margin-top:3px }
+
+.divider{ height:1px; background:var(--line); margin:6mm 0 }
+
+.dept{ text-align:center; font-size:12.5px; color:var(--course-dark); font-weight:600; letter-spacing:.06em; text-transform:uppercase }
+
+.titleblock{ text-align:center; margin:5mm 0 7mm }
+.eyebrow{ font-size:11.5px; color:var(--muted); letter-spacing:.14em; text-transform:uppercase; margin-bottom:6px }
+.course-title{ font-size:34px; font-weight:800; line-height:1.18; color:var(--ink) }
+.course-meta{ margin-top:10px; font-size:13.5px; color:var(--muted) }
+.course-meta b{ color:var(--course-dark) }
+
+.credit-pill{
+  display:inline-block; margin-top:13px; padding:5px 18px; border-radius:999px;
+  background:color-mix(in srgb, var(--course) 14%, var(--surface)); color:var(--course-dark);
+  font-size:12px; font-weight:700; letter-spacing:.04em;
+}
+
+.section{ margin-top:7mm }
+.section-title{
+  font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--course-dark); border-bottom:1.5px solid var(--line); padding-bottom:5px; margin-bottom:8px;
+}
+.notices{ margin:0; padding-left:17px; font-size:12.5px; line-height:1.75; color:var(--ink) }
+.notices li{ margin-bottom:3px }
+
+.routine{ margin:0; padding:0; list-style:none; font-size:12.5px; color:var(--ink) }
+.routine li{ display:flex; justify-content:space-between; gap:10px; padding:5px 0; border-bottom:1px dashed var(--line) }
+.routine li:last-child{ border-bottom:none }
+.routine .day{ font-weight:700; min-width:34mm }
+.routine .where{ color:var(--muted); font-size:11px }
+
+.teacher{ text-align:center; font-size:11.5px; color:var(--muted); margin-top:5mm; padding-bottom:5mm }
+.teacher b{ color:var(--ink) }
+
+@page{ size: A4 portrait; margin: 14mm; }
+@media print{
+  body{ padding:0; background:#fff }
+  .wrap{ max-width:none }
+  .preview-label{ display:none }
+  .sheet{ border:none; border-radius:0; max-width:none; min-height:269mm }
+}
+</style>
+
+<div class="wrap">
+  <p class="preview-label">প্রিন্ট প্রিভিউ — A4 পোর্ট্রেট, নোটবুক/খাতার কভার পেজ</p>
+  <div class="sheet">
+    <div class="band"></div>
+    <div class="content">
+      <div class="univ">
+        <div class="name">ISLAMIC UNIVERSITY OF TECHNOLOGY (IUT)</div>
+        <div class="sub">OIC · Board Bazar, Gazipur, Bangladesh</div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="dept">Dept. of Software Engineering</div>
+
+      <div class="titleblock">
+        <div class="eyebrow">Course Notebook</div>
+        <div class="course-title">Arabic I</div>
+        <div class="course-meta">Course Code: <b>Hum 4142</b> &nbsp;·&nbsp; Semester 1, Winter 2025–2026</div>
+        <div class="credit-pill">0.75 CREDIT</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Class Routine</div>
+        <ul class="routine">
+          <li><span class="day">Tuesday</span><span>Periods 3–4 · 10:30 AM–12:10 PM</span><span class="where">Room R-302</span></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Notices</div>
+        <ul class="notices">
+          <li>Google Classroom code: <b>px4uhs5y</b></li>
+        </ul>
+      </div>
+
+      <div class="teacher">Course Teacher: <b>Prof. Dr. Abu Raihan Mostofa Kamal</b>, Dept. of CSE</div>
+    </div>
+    <div class="band bottom"></div>
+  </div>
+</div>

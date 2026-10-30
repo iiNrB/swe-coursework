@@ -1,0 +1,134 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>CSE 4107 Cover Page</title>
+<style>
+:root{
+  --course:#6A1B9A; --course-dark:#4A148C;
+  --bg:#F7F5F1; --surface:#FFFFFF; --ink:#211D18; --muted:#6B6358; --line:#D8D2C4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26; color-scheme: dark; }
+}
+:root[data-theme="dark"]{ --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26; color-scheme: dark; }
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700;800&display=swap');
+body{
+  background:var(--bg); color:var(--ink); margin:0;
+  font-family:'Libre Franklin','Hind Siliguri',system-ui,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:24px 32px;
+}
+.wrap{max-width:650px;margin:0 auto}
+.preview-label{color:var(--muted); font-size:12px; margin:0 0 10px; text-align:center}
+
+.sheet{
+  background:var(--surface); border:1px solid var(--line); border-radius:6px;
+  max-width:520px; margin:0 auto; overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.band{ height:16mm; background:var(--course); }
+.band.bottom{ height:12mm; }
+
+.content{ padding:10mm 18mm; flex:1; display:flex; flex-direction:column; justify-content:center; }
+
+.univ{ text-align:center; }
+.univ .name{ font-size:15px; font-weight:700; letter-spacing:.04em; color:var(--ink) }
+.univ .sub{ font-size:11px; color:var(--muted); margin-top:3px }
+
+.divider{ height:1px; background:var(--line); margin:6mm 0 }
+
+.dept{ text-align:center; font-size:12.5px; color:var(--course-dark); font-weight:600; letter-spacing:.06em; text-transform:uppercase }
+
+.titleblock{ text-align:center; margin:5mm 0 7mm }
+.eyebrow{ font-size:11.5px; color:var(--muted); letter-spacing:.14em; text-transform:uppercase; margin-bottom:6px }
+.course-title{ font-size:34px; font-weight:800; line-height:1.18; color:var(--ink) }
+.course-meta{ margin-top:10px; font-size:13.5px; color:var(--muted) }
+.course-meta b{ color:var(--course-dark) }
+
+.credit-pill{
+  display:inline-block; margin-top:13px; padding:5px 18px; border-radius:999px;
+  background:color-mix(in srgb, var(--course) 14%, var(--surface)); color:var(--course-dark);
+  font-size:12px; font-weight:700; letter-spacing:.04em;
+}
+
+.section{ margin-top:7mm }
+.section-title{
+  font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--course-dark); border-bottom:1.5px solid var(--line); padding-bottom:5px; margin-bottom:8px;
+}
+.booklist{ margin:0; padding-left:17px; font-size:12.5px; line-height:1.75; color:var(--ink) }
+.booklist li{ margin-bottom:3px }
+
+.routine{ margin:0; padding:0; list-style:none; font-size:12.5px; color:var(--ink) }
+.routine li{ display:flex; justify-content:space-between; gap:10px; padding:5px 0; border-bottom:1px dashed var(--line) }
+.routine li:last-child{ border-bottom:none }
+.routine .day{ font-weight:700; min-width:34mm }
+.routine .where{ color:var(--muted); font-size:11px }
+
+.assessment{ font-size:12px; color:var(--muted); margin-bottom:8px }
+.synopsis-list{
+  margin:0; padding-left:17px; font-size:12px; line-height:1.7; color:var(--ink);
+  columns:2; column-gap:10mm;
+}
+.synopsis-list li{ break-inside:avoid; margin-bottom:1px }
+
+.teacher{ text-align:center; font-size:11.5px; color:var(--muted); margin-top:5mm; padding-bottom:5mm }
+.teacher b{ color:var(--ink) }
+
+@page{ size: A4 portrait; margin: 14mm; }
+@media print{
+  body{ padding:0; background:#fff }
+  .wrap{ max-width:none }
+  .preview-label{ display:none }
+  .sheet{ border:none; border-radius:0; max-width:none; min-height:269mm }
+}
+</style>
+
+<div class="wrap">
+  <p class="preview-label">প্রিন্ট প্রিভিউ — A4 পোর্ট্রেট, নোটবুক/খাতার কভার পেজ</p>
+  <div class="sheet">
+    <div class="band"></div>
+    <div class="content">
+      <div class="univ">
+        <div class="name">ISLAMIC UNIVERSITY OF TECHNOLOGY (IUT)</div>
+        <div class="sub">OIC · Board Bazar, Gazipur, Bangladesh</div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="dept">Dept. of Software Engineering</div>
+
+      <div class="titleblock">
+        <div class="eyebrow">Course Notebook</div>
+        <div class="course-title">Structured<br>Programming I</div>
+        <div class="course-meta">Course Code: <b>CSE 4107</b> + Lab <b>CSE 4108</b> &nbsp;·&nbsp; Semester 1, Winter 2025–2026</div>
+        <div class="credit-pill">3.00 + 1.50 CREDIT</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Class Routine</div>
+        <ul class="routine">
+          <li><span class="day">Wednesday</span><span>Period 2 · 9:15–10:30 AM</span><span class="where">Room R-510</span></li>
+          <li><span class="day">Thursday</span><span>Period 4 · 11:45 AM–1:00 PM</span><span class="where">Room R-510</span></li>
+          <li><span class="day">Monday (Lab)</span><span>Periods 5–6 · 2:30–5:00 PM</span><span class="where">Room L-2</span></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Reference Books</div>
+        <ul class="booklist">
+          <li>C Programming — A Modern Approach — K.N. King</li>
+          <li>Teach Yourself C — Herbert Schildt</li>
+          <li>Programming in ANSI C — E. Balagurusamy</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Syllabus</div>
+        <div class="assessment">Attendance 10% · Quiz/Viva 30% (best 3 of 4) · Mid Exam 30% · Final Exam 30%</div>
+      </div>
+
+      <div class="teacher">Course Teacher: <b>Shahriar Ivan</b>, Assistant Professor, Dept. of CSE</div>
+    </div>
+    <div class="band bottom"></div>
+  </div>
+</div>
