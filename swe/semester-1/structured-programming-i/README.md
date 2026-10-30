@@ -9,5 +9,8 @@ Programming in ANSI C (E. Balagurusamy).
 - [Cover Page — Theory (CSE 4107)](cover-page.pdf) · [Lab (CSE 4108)](cover-page-lab.pdf) — printable A4 notebook covers, color-coded
 - [OBE Course Outline](course-outline.pdf) — weekly plan, grading policy, CO/PO mapping
 - [Lecture Slides](slides/) — 01 Introduction to C, 02 C Fundamentals
+  - [01 Print Handout — Part 1](slides/01-handout-part1.pdf) · [Part 2](slides/01-handout-part2.pdf)
+  - [02 Print Handout — Part 1](slides/02-handout-part1.pdf) · [Part 2](slides/02-handout-part2.pdf)
+  - 3 slides/page with note space, split for double-sided printing (same Part 1/Part 2 method as SWE 4101)
 - [Syllabus, Routine & Notices](syllabus-routine-notice.md)
 - [Notes](notes/) — formatted per [note-format.md](../../templates/note-format.md)
