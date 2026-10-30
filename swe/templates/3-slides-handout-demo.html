@@ -25,35 +25,35 @@ h1{font-size:clamp(18px,4vw,22px); margin:0 0 4px}
   max-width:560px; margin:0 auto; padding:8px;
   display:flex; flex-direction:column; gap:3mm;
 }
-.row{display:flex; gap:5mm; height:76mm}
+.row{display:flex; gap:4mm; height:87mm}
 .slide{
-  width:135mm; height:76mm; flex:none;
+  width:154mm; height:87mm; flex:none;
   border:1.5px solid var(--ink); border-radius:3px;
-  padding:8px 10px; display:flex; flex-direction:column; gap:4px;
+  padding:9px 11px; display:flex; flex-direction:column; gap:5px;
   background:var(--surface); overflow:hidden;
 }
-.slide .num{font-size:11px; color:var(--muted); font-weight:600}
-.slide .title{font-size:13px; font-weight:700; line-height:1.25}
-.slide ul{margin:0; padding-left:13px; font-size:9.5px; line-height:1.5; color:var(--muted)}
+.slide .num{font-size:12px; color:var(--muted); font-weight:600}
+.slide .title{font-size:14.5px; font-weight:700; line-height:1.25}
+.slide ul{margin:0; padding-left:14px; font-size:10.5px; line-height:1.55; color:var(--muted)}
 .notes{
-  flex:1; height:76mm;
-  background-image: repeating-linear-gradient(to bottom, var(--line) 0 1px, transparent 1px 13px);
+  flex:1; height:87mm;
+  background-image: repeating-linear-gradient(to bottom, var(--line) 0 1px, transparent 1px 14px);
   background-position: 0 6px;
 }
-footer{margin-top:6px; font-size:12px; color:var(--muted); line-height:1.5; max-width:560px; margin-inline:auto}
-@page{ size: A4 portrait; margin: 6mm 8mm; }
+footer{margin-top:3px; font-size:12px; color:var(--muted); line-height:1.4; max-width:560px; margin-inline:auto}
+@page{ size: A4 portrait; margin: 4mm 6mm; }
 @media print{
   body{padding:0 10px; background:#fff}
-  h1{font-size:14px; margin-bottom:1px}
-  .sub{font-size:9px; margin-bottom:4px}
-  .page{border:none; max-width:none; padding:0; gap:3.5mm}
-  footer{font-size:8.5px; margin-top:4px}
+  h1{font-size:13px; margin-bottom:0}
+  .sub{font-size:8.5px; margin-bottom:2px}
+  .page{border:none; max-width:none; padding:0; gap:3mm}
+  footer{font-size:8px; margin-top:2px}
 }
 </style>
 
 <div class="wrap">
   <h1>৩টি স্লাইড প্রতি পেজ — পুরো পেজ ভরে</h1>
-  <p class="sub">স্লাইড ও নোট-কলাম বড় করে পুরো A4 পেজের উচ্চতা ভরানো হয়েছে (১৩৫×৭৬mm, সঠিক 16:9), যাতে নিচে ফাঁকা জায়গা না থাকে। নমুনা কনটেন্ট SWE 4101 Lec-1 থেকে।</p>
+  <p class="sub">স্লাইড ও নোট-কলাম আরও বড় করে (১৫৪×৮৭mm, সঠিক 16:9) এবং পেজ-মার্জিন কমিয়ে উপরে-নিচের ফাঁকা জায়গা আরও কমানো হয়েছে। নমুনা কনটেন্ট SWE 4101 Lec-1 থেকে।</p>
 
   <div class="page">
     <div class="row">
@@ -87,7 +87,7 @@ footer{margin-top:6px; font-size:12px; color:var(--muted); line-height:1.5; max-
   </div>
 
   <footer>
-    স্লাইড ও নোট-বক্স বড় করে পুরো পেজের উচ্চতা ভরিয়ে দেওয়া হয়েছে, তবু এক পেজেই ফিট করছে।
-    স্টেপলার মার্জিন নেই — চারপাশে সমান স্বাভাবিক মার্জিন।
+    স্লাইড-নোট বক্স আরও বড় করে এবং হেডার/ফুটার/পেজ-মার্জিন কমিয়ে উপরে-নিচের ফাঁকা জায়গা
+    যতটা সম্ভব কমানো হয়েছে, তবু এক পেজেই ফিট করছে।
   </footer>
 </div>
