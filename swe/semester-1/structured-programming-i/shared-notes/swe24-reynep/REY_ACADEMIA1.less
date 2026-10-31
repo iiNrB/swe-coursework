@@ -1,0 +1,158 @@
+/**
+    All the styles are not here.
+    shd101wyy.markdown-preview-enhanced has a default `style.less`
+        I kept a lot of styles there including FONT-LINKs
+
+    - REYNEP
+**/
+
+.markdown-preview {
+    font-size: 20px;
+    font-family: 'Noto Serif';
+    // font-weight: 300;
+    p {
+        margin-bottom: 0px;
+        margin-top: 20px;
+    }
+    strong {
+        // font-family: 'Young Serif';
+    }
+    b {
+        font-family: 'Young Serif';
+        font-weight: 400;
+    }
+    /*
+    br {
+        content: "";
+        margin: 2em;
+        display: block;
+        font-size: 24%;
+    }
+    */
+    ul, ol {
+        li {
+            font-family: 'REY_FiraSansCondensedLightItalic';
+            font-style: normal;
+            font-weight: 400;
+
+            //font-family: 'Noto Serif', 'Liberation Serif', 'Typography Times', 'Quivira', 'Quartist', 'Times New Roman', 'Lotion', ;
+            //font-style: italic;
+            //font-weight: 300;
+
+            font-size: 20px;
+            margin: 0px;
+            margin-bottom: 0px;
+            margin-top: 2px;
+
+            ol > li, ul > li {
+                font-size: 95%;
+                //font-family: 'Noto Serif';
+                //font-style: italic;
+                //font-weight: 300;
+            }
+        }
+
+        p {
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+
+        strong {
+            font-weight: 400;
+        }
+
+        /*
+        br {
+            content: "";
+            margin: 0.2em;
+            display: block;
+            font-size: 24%;
+        }
+        */
+    }
+    .REY_SMALLER_LIST {
+        ul > li, ol > li {
+            font-size: 19px;
+        }
+    }
+
+    .BR1 {
+        padding-bottom: 10px;
+    }
+    .BR2 {
+        padding-bottom: 20px;
+    }
+    .BR3 {
+        padding-bottom: 30px;
+    }
+
+
+    .S1 {
+        font-weight: 400;
+        line-height: normal;
+    }
+    .S2 {
+        font-weight: 300;
+        line-height: normal;
+    }
+    .S3 {
+        font-weight: 300;
+        line-height: normal;
+        font-size: 18px;
+
+        h5 {
+            font-size: 20px;
+            font-family: "Noto Serif";
+            font-weight: 400;
+        }
+    }
+    .S4 {
+        font-weight: 300;
+        line-height: normal;
+        font-size: 18px;
+
+        h5 {
+            font-size: 20px;
+            font-family: "Noto Serif";
+            font-weight: 400;
+        }
+        b { 
+            font-family: 'Quartist';
+            font-weight: 600;
+        }
+        strong {
+            font-family: 'Young Serif';
+            font-weight: 400;
+        }
+        ul, li {
+            strong {
+                font-size: 92.5%;
+            }
+        }
+        em {
+            font-style: inherit;
+            text-decoration: underline solid;
+            // text-decoration: underline double;
+            // text-decoration: underline dotted;
+            // text-decoration: underline dashed;
+            // text-decoration: underline wavy;
+        }
+        del {
+            font-style: normal;
+            text-decoration: none;
+            color: inherit;
+            font-family: "CMU Serif";
+            font-weight: 400;
+
+            // We wanna use del as a different styling mark
+            // what if we used class="t1" instead?
+        }
+    }
+    @media print {
+        .S1, .S2, .S3, .S4 {
+            break-inside: avoid;
+            page-break-inside: avoid;       // For older browser engine compatibility
+            display: block;     // Ensures the block context is correctly interpreted
+        }
+    }
+}

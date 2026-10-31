@@ -1,0 +1,931 @@
+
+/* 
+    Please visit the URL below for more information: 
+        https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css 
+
+    REYNEP Tips:
+        1. When you rewrite this file, before any kind of styling make sure if the PAGE margin-top & margin bottom is okay 💁‍♀️ 
+        2. In YAML, you cannot have the same key twice under the same parent.
+
+    ???
+        1. Use this next time for @font-face generation:- C:\Users\REY\Desktop\Houdini_Level0\133.fonts_using
+*/
+
+
+
+
+
+// 1. Define the base URL so you don't have to repeat it
+@neuton-url: 'https://raw.githubusercontent.com/REYNEP/reynep.github.io/2e538cfc8cca0cbcfa15a94c6dc24ed710d8117c/fonts/Neuton/Neuton-';
+
+// 2. Create a mixin template (defaults font-style to 'normal' to save even more space)
+.define-neuton(@file-suffix, @weight, @style: normal) {
+  @font-face {
+    font-family: 'Neuton';
+    src: url('@{neuton-url}@{file-suffix}.woff') format('woff');
+    font-weight: @weight;
+    font-style: @style;
+    font-display: swap;
+  }
+}
+
+// 3. Call the mixin for each font face
+.define-neuton('Bold', bold);
+.define-neuton('Extrabold', 800);
+.define-neuton('Light', 300);
+.define-neuton('Extralight', 200);
+.define-neuton('Italic', 500, italic);
+.define-neuton('Regular', 500);
+.define-neuton('ExtralightItalic', 200, italic);
+
+
+
+
+
+@lotion-url: 'https://raw.githubusercontent.com/REYNEP/reynep.github.io/2e538cfc8cca0cbcfa15a94c6dc24ed710d8117c/fonts/Lotion/Lotion-';
+
+.define-lotion(@suffix, @weight: normal, @style: normal) {
+  @font-face {
+    font-family: 'Lotion';
+    src: url('@{lotion-url}@{suffix}.woff') format('woff');
+    font-weight: @weight;
+    font-style: @style;
+    font-display: swap;
+  }
+}
+
+.define-lotion('Regular'); 
+.define-lotion('RegularItalic', normal, italic);
+.define-lotion('SemiBold', 600);
+.define-lotion('SemiBoldItalic', 600, italic);
+.define-lotion('Bold', bold);
+.define-lotion('BoldItalic', bold, italic);
+.define-lotion('Black', 900);
+.define-lotion('BlackItalic', 900, italic);
+
+
+
+
+
+@audiolink-url: 'https://raw.githubusercontent.com/REYNEP/reynep.github.io/2e538cfc8cca0cbcfa15a94c6dc24ed710d8117c/fonts/AudioLinkMono/AudioLinkMono-';
+
+.define-audiolink(@suffix, @weight: normal, @style: normal) {
+  @font-face {
+    font-family: 'AudioLink Mono';
+    src: url('@{audiolink-url}@{suffix}.woff') format('woff');
+    font-weight: @weight;
+    font-style: @style;
+    font-display: swap;
+  }
+}
+
+.define-audiolink('Light', 300);
+.define-audiolink('Regular'); 
+.define-audiolink('Medium', 500);
+.define-audiolink('Demi'); 
+.define-audiolink('Bold', bold);
+
+
+
+
+
+@noto-url: 'https://raw.githubusercontent.com/REYNEP/reynep.github.io/1a2cd65ead4eec3cf48556ca8c11811f0a0afdfc/fonts/NotoSerif-Static/NotoSerif-';
+
+.define-noto(@suffix, @weight: normal, @style: normal) {
+  @font-face {
+    font-family: 'Noto Serif';
+    // This dynamically generates both the local() and url() strings perfectly
+    src: local('NotoSerif-@{suffix}.ttf'), url('@{noto-url}@{suffix}.woff2');
+    font-weight: @weight;
+    font-style: @style;
+  }
+}
+
+// Thin (100)
+.define-noto('Thin', 100);
+.define-noto('ThinItalic', 100, italic);
+
+// ExtraLight (200)
+.define-noto('ExtraLight', 200);
+.define-noto('ExtraLightItalic', 200, italic);
+
+// Light (300)
+.define-noto('Light', 300);
+.define-noto('LightItalic', 300, italic);
+
+// Regular (Normal)
+.define-noto('Regular'); 
+.define-noto('Italic', normal, italic);
+
+// Medium (500)
+.define-noto('Medium', 500);
+.define-noto('MediumItalic', 500, italic);
+
+// SemiBold (600)
+.define-noto('SemiBold', 600);
+.define-noto('SemiBoldItalic', 600, italic);
+
+// Bold (Bold / 700)
+.define-noto('Bold', bold);
+.define-noto('BoldItalic', bold, italic);
+
+// ExtraBold (You had this set to 'bold', but usually this is 800)
+.define-noto('ExtraBold', bold);
+.define-noto('ExtraBoldItalic', bold, italic);
+
+// Black (900)
+.define-noto('Black', 900);
+.define-noto('BlackItalic', 900, italic);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@cmu-url: 'https://raw.githubusercontent.com/REYNEP/reynep.github.io/2e538cfc8cca0cbcfa15a94c6dc24ed710d8117c/fonts/CMUSerif/CMUSerif-';
+
+.define-cmu(@suffix, @weight, @style: normal, @family: 'CMU Serif') {
+  @font-face {
+    font-family: @family;
+    src: url('@{cmu-url}@{suffix}.woff') format('woff');
+    font-weight: @weight;
+    font-style: @style;
+    font-display: swap;
+  }
+}
+
+// standard CMU Serif
+.define-cmu('BoldItalic', bold, italic);
+.define-cmu('Bold', bold);
+.define-cmu('Italic', 500, italic);
+.define-cmu('Roman', 500);
+
+// CMU Serif Extra
+.define-cmu('BoldSlanted', bold, italic, 'CMU Serif Extra');
+.define-cmu('RomanSlanted', 500, italic, 'CMU Serif Extra');
+
+// CMU Serif Upright
+.define-cmu('UprightItalic', 500, italic, 'CMU Serif Upright');
+
+
+
+
+
+
+
+
+
+
+
+
+@font-face {
+  font-family: "Quartist";
+  src: url("https://raw.githubusercontent.com/REYNEP/reynep.github.io/2e538cfc8cca0cbcfa15a94c6dc24ed710d8117c/fonts/Quartist.ttf");
+}
+@font-face {
+  font-family: "Bahnschrift REY";
+  src: local("Bahnschrift"), url("https://media.githubusercontent.com/media/flying-whales/flying-whales/20e98b4dd0388a3fafd09acb8b07e5bd3dc701b9/Assets/Fonts/bahnschrift.ttf") format(ttf);
+}
+@font-face {
+  font-family: "Emoji REY";
+  src: url("");
+}
+@font-face {
+  font-family: "REY_FiraSansCondensedLightItalic";
+  src: local('Fira Sans Condensed Light Italic'), url("https://raw.githubusercontent.com/bBoxType/FiraSans/refs/heads/master/Fira_Sans_4_3/Fonts/Fira_Sans_TTF_4301/Condensed/Italic/FiraSansCondensed-LightItalic.ttf");
+}
+
+// @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.markdown-preview {
+  // modify your style here
+  // eg: background-color: blue;
+    padding: 0em calc(50% - 570px) !important;
+
+    .REY_PDF {
+        width: 100vw;                   /* Force width to be 100% of the VIEWPORT, not the container */
+        position: relative;             /* Position relative to flow */
+        left: 50%;                      /* Move center of image to center of container */
+        right: 50%;
+        margin-left: -50vw;             /* Pull it back to the far left edge */
+        margin-right: -50vw;            /* Pull it back to the far right edge */
+        max-width: 100vw !important;    /* Override any default max-width limits */
+        box-sizing: border-box;         /* ensure padding doesn't add to width */
+    }
+    
+    //background-color: #1d1f21;
+    color: #111 !important;
+
+    blockquote {
+        color: #111 !important;
+    }
+
+    h1, h2, h3, h4, h5, h6, strong {
+        //color: #f0f0f0;
+    }
+
+    mark {
+        background-color: #d9ead3;
+        //color: #c5c8c6;
+    }
+    pre > code {
+        color: #f0f0f0
+    }
+
+    /**
+    h1 {
+        page-break-before: always;
+    }
+    */
+    font-size: 24px;
+    line-height: 1.25;       // Default line-height
+    font-family: 'CMU Serif', 'Bahnschrift', monospace;
+        // prince needs 'Bahnschrift Light Condensed'
+        // Switch between Neuton / Bahnschrift as you wish 💁‍♀️
+    font-stretch: condensed;
+    font-weight: 400;
+
+    .column50 {
+        float: left;
+        width: 50%;
+        padding: 0px;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    h1, h2, h3, h4, h5, h6, strong {
+        // font-family: 'Bahnschrift';
+        font-family: 'Quartist';
+        em, i {
+            font-family: 'CMU Serif';
+            font-weight: 400;
+        }
+    }
+    strong {
+        font-family: 'Quartist';
+        font-size: 110%;
+    }
+
+    h6 {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+
+    a {
+        // Since we are adding color stuff here, must add different variation in pdf too
+        font-style: italic;
+        //text-decoration: none;
+        //color: rgb(255, 193, 78);
+    }
+    a:hover {
+        //text-decoration: underline;
+        //color: rgb(255, 193, 78);
+    }
+
+    h1, h2, h3 {
+        text-align: center;
+    }
+    h2 {
+        margin-bottom: 0.2em;
+        padding-bottom: 0.2em;
+    }
+    h4 {
+        margin-top: 1em;
+        margin-bottom: 0.15em;
+    } 
+    h5 {
+        margin-top: 0.5em;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+
+
+
+    blockquote {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        font-size: 100%;
+    }
+    code {
+        font-family: 'AudioLink Mono', 'Lotion', monospace;
+        font-weight: bold;
+        font-size: 100%;
+        font-style: normal;
+    }
+    pre {
+        line-height: 20px;
+        margin-bottom: 5px;
+    }
+    pre > code {
+        font-size: 16px;
+        // &.prince has different
+    }
+    
+
+
+
+
+    pre {
+        page-break-inside: auto;
+        /* REYNEP MOD */
+    }
+
+    img {
+        -prince-image-resolution: 150dpi;        /* set an explicit DPI */
+    }
+    img.makeSmall_NoFlex {
+        -prince-image-resolution: 160dpi;        /* set an explicit DPI */
+    }
+    img.makeSmall {
+        -prince-image-resolution: 160dpi;        /* set an explicit DPI */
+        float: left; 
+        margin-right: 15px;
+    }
+    img.makeSmaller {
+        -prince-image-resolution: 180dpi;        /* set an explicit DPI */
+        float: left; 
+        margin-right: 20px;
+    }
+    img.makeSmallest {
+        -prince-image-resolution: 200dpi;        /* set an explicit DPI */
+        float: left; 
+        margin-right: 20px;
+    }
+
+
+
+
+
+
+    table {
+        display: inline !important;
+        width: auto !important;
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    // OUTERMOST list element containers
+    ul > li, ol > li {
+        margin-bottom: 15px;
+        font-style: italic;
+        font-weight: bold;
+
+        ol > li, ul > li {
+            font-style: normal;
+            font-weight: normal;
+            margin-top: 0.25em;
+            margin-bottom: 0px;
+            font-family: 'REY_FiraSansCondensedLightItalic', monospace;
+            font-weight: 300;
+            font-size: 92%;
+            line-height: 1.15;
+            // list-style-type: decimal; 
+                /* Shows as 1, 2, 3, 4... */
+                /* Or use lower-alpha for a, b, c... */
+                /* list-style-type: lower-alpha; */
+
+            ol > li, ul > li {
+                ol > li, ul > li { 
+                    line-height: 1.1;
+                }
+            }
+
+            h5 {
+                margin-top: 0px;
+            }
+            pre {
+                margin-bottom: 4px;
+            }
+        }
+    }
+    .REY_SECTION_TYPE1 {
+        ul > li, ol > li {
+            margin-bottom: 0px;
+            
+            strong {
+                font-family: 'Quartist';
+            }
+
+            font-weight: 100;
+
+            ol > li, ul > li {
+                margin-bottom: 0px;
+                font-family: 'REY_FiraSansCondensedLightItalic', monospace;
+            }
+        }
+    }
+    .REY_SECTION_TYPE2 {
+        line-height: 28px;
+        ul > li, ol > li {
+            margin-bottom: -8px;
+            
+            strong {
+                font-family: 'Quartist';
+            }
+
+            font-weight: 100;
+
+            ol > li, ul > li {
+                margin-bottom: 0px;
+                font-family: 'REY_FiraSansCondensedLightItalic', monospace;
+            }
+        }
+
+        ul, li {
+            margin-bottom: 32px;
+        }
+    }
+    /* This targets only the elements inside this specific div */
+    /* The * (asterisk) is really important */
+    .REY_SMALLER_BLOCK * { 
+        font-size: inherit !important; 
+    }
+    .REY_ACADEMIA1 {
+        font-size: 18px;
+        font-family: 'Noto Serif';
+        font-weight: 300;
+        p {
+            margin-bottom: 0px;
+            margin-top: 20px;
+        }
+        /*
+        br {
+            content: "";
+            margin: 2em;
+            display: block;
+            font-size: 24%;
+        }
+        */
+        ul, ol {
+            li {
+                font-family: 'Noto Serif', 'Liberation Serif', 'Typography Times', 'Quivira', 'Quartist', 'Times New Roman', 'Lotion', ;
+                font-style: italic;
+                font-weight: 300;
+                font-size: 20px;
+                margin: 0px;
+                margin-bottom: 0px;
+                margin-top: 2px;
+
+                ol > li, ul > li {
+                    font-size: 95%;
+                }
+            }
+
+            p {
+                margin-bottom: 0px;
+                margin-top: 0px;
+            }
+
+            /*
+            br {
+                content: "";
+                margin: 0.2em;
+                display: block;
+                font-size: 24%;
+            }
+            */
+        }
+        .REY_SMALLER_LIST {
+            ul > li, ol > li {
+                font-size: 19px;
+            }
+        }
+
+        .BR1 {
+            padding-bottom: 10px;
+        }
+        .BR2 {
+            padding-bottom: 20px;
+        }
+        .BR3 {
+            padding-bottom: 30px;
+        }
+    }
+    .REY_ACADEMIA2 {
+        font-family: 'CMU Serif';
+    }
+    .REY_TITLE_SECTION1 {
+        text-align: center;
+    }
+    .REY_TITLE_SUB1 {
+        margin-top: -1.25em;
+        font-size: 110%;
+        line-height: 100%;
+        font-family: 'Neuton'; 
+        font-weight: 200;
+        font-style: italic;
+    }
+    .REY_TITLE_SUB2 {
+        margin-top: 0em;
+        font-size: 110%;
+        line-height: 100%;
+        font-family: 'Neuton';
+        font-weight: 200;
+        font-style: italic;
+    }
+    
+    .REY_PAGE_START         {margin-top: -60px;}
+    .REY_NOSHOW_MD          {display: none;}
+    .REY_NOSHOW_PDF         {display: block;}
+
+    .REY_BR_LIST_LVL3       {margin: 0; margin-bottom: 0.50em;}
+    .REY_BR_LIST3           {margin: 0; margin-bottom: 0.50em;}
+    .REY_BR_LIST2           {margin: 0; margin-bottom: 0.75em;}
+    .REY_BR_LIST1           {margin: 0; margin-bottom: 1.00em;}
+    .REY_BR1_NEGATIVE       {margin-top: -70px;}
+    .REY_BR2_NEGATIVE       {margin-top: -50px;}
+    .REY_BR3_NEGATIVE       {margin-top: -40px;}
+    .REY_BR3_NEGATIVE_WEIRD {margin-top: -40px;}
+    .REY_BR4_NEGATIVE       {margin-top: -30px;}
+    .REY_BR4_NEGATIVE_WEIRD {margin-top: -30px;}
+    .REY_BR5_NEGATIVE       {margin-top: -20px;}
+    .REY_BR6_NEGATIVE       {margin-top: -10px;}
+    .REY_BR1_POSITIVE_PDF   {margin-top: 0;}
+    // Use ---> <div class="REY_NOSHOW_PDF">    </br></br></br></br></br></br>   </div><div class="REY_BR1_FIX_PDF"></div>
+    .REY_PAGEBREAK {
+        margin-bottom: 300px;
+        page-break-before: always;
+            // We do this page-break-before, cz, we wanna fix some MARGIN-ERROR that appears after princexml convert
+            // That fix in inside @.price part
+    }
+    .REY_PAGEBREAK2 {
+        margin-bottom: 69px;
+        page-break-before: always;
+            // We do this page-break-before, cz, we wanna fix some MARGIN-ERROR that appears after princexml convert
+            // That fix in inside @.price part
+    }
+    .REY_PAGEBREAK3 {
+        margin-bottom: 0px;
+        page-break-before: always;
+            // We do this page-break-before, cz, we wanna fix some MARGIN-ERROR that appears after princexml convert
+            // That fix in inside @.price part
+    }
+    .REY_PAGEBREAK_TEXT {
+        font-size: 50px; 
+        font-family: 'Quartist';
+    }
+    .REY_TITLE              {margin-top: -36px;}
+    .REY_TITLEV2            {
+        margin-top: -36px;
+
+        h1, h2 {
+            margin-bottom: -20px;
+        }
+    }
+
+    .REY_TABLE_V1 {
+        font-style: normal; 
+        font-family: 'Bahnschrift REY'; 
+        font-weight: 100;
+        font-variant: small-caps;
+    }
+    .REY_TABLE_V2 {
+        font-size: 80%;
+    }
+    .REY_SMALLER_CODE {
+        font-size: 0.7em;
+    }
+    .REY_SMALLER_CODE > pre > code {
+        font-size: 0.95em;
+        line-height: 100%;
+    }
+    .REY_IMG_CONTAINER {
+        font-size: 85%;
+        line-height: 125%;
+    }
+
+    
+
+     /** However, background-clip is not supported by princexml */
+    .REY_DocTitle {
+        text-align: center;
+        font-size: 30px;
+        background: linear-gradient(145deg, #ff7f00, #8e44ad); /* Orange to Purple Gradient */
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: 2px;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+        @media print {
+            .REY_NO_PAGEBREAK {
+                break-inside: avoid;
+                page-break-inside: avoid; // For older browser engine compatibility
+                display: block; // Ensures the block context is correctly interpreted
+            }
+            .REY_NOSHOW_MD {
+                display: block !important;
+            }
+            .REY_NOSHOW_PDF {
+                display: none !important;
+            }
+            .REY_PAGEBREAK {
+                margin-bottom: 0px !important;
+                margin-top: -28px !important;
+            }
+        }
+
+
+        // custom prince pdf export style
+        &.prince {
+            color: black;
+            
+            ul > li, ol > li {
+                ol > li, ul > li {
+                    margin-bottom: 0px;
+                    font-family: 'Fira Sans Condensed Light Italic', monospace;
+                    font-size: 92.5%;
+                }
+            }
+
+            .REY_PAGEBREAK {
+                margin-bottom: 0px;
+                margin-top: -28px;
+            }
+
+            .REY_TITLEV2            {
+                margin-top: -67.5px;
+
+                h1, h2 {
+                    margin-bottom: -18px;
+                }
+            }
+
+            .REY_TITLE_SUB2          {margin-top: -10px;}
+
+            .REY_BR1_POSITIVE_PDF    {margin-top:  50px;}
+            .REY_BR1_NEGATIVE        {margin-top: -40px;}
+            .REY_BR2_NEGATIVE        {margin-top: -30px;}
+            .REY_BR3_NEGATIVE        {margin-top: -20px;}
+            .REY_BR3_NEGATIVE_WEIRD  {margin-top: -50px;}
+            .REY_BR4_NEGATIVE        {margin-top: -15px;}
+            .REY_BR4_NEGATIVE_WEIRD  {margin-top: -42.5px;}
+            .REY_BR5_NEGATIVE        {margin-top: -10px;}
+
+            .REY_PAGE_STARTS_WITH_H5 {margin-top: -30px;}
+            .REY_PAGE_STARTS_WITH_H4 {margin-top: -40px;}
+            .REY_PAGE_STARTS_WITH_H3 {margin-top: -50px;}
+            .REY_PAGE_STARTS_WITH_H2 {margin-top: -65px;}
+            .REY_PAGE_STARTS_WITH_H1 {margin-top: -80px;}
+
+            .REY_NOSHOW_MD  {display: block !important;}
+            .REY_NOSHOW_PDF {display: none  !important;}
+
+            h1, h2 {
+                text-align: center;
+            }
+            h3 {
+                //margin-top: -2.5px;
+            }
+            h6 {
+                //margin-top: 16px;
+                //margin-bottom: 16px;
+            }
+
+            .REY_BLOCK_GAP          {margin-top:  50px;}
+            .REY_PDF_MORE_HEIGHT    {margin-top: -70pt;}
+            .REY_PDF_MORE_HEIGHT2   {margin-top: -30pt;}
+            .REY_HR > hr            {display: none !important;}
+            .REY_HR                 {margin-top:  50px;}
+                // Try not to use this one, this is not standard styling anyway
+
+            .REY_SMALLER_CODE > pre > code {
+                font-size: 1em;
+                line-height: 100%;
+            }
+
+            a {
+                // Since we are adding color stuff here, must add different variation in pdf too
+                font-style: italic;
+                text-decoration: none;
+                color: #08c;
+            }
+            a:hover {
+                text-decoration: underline;
+                color: rgb(0, 163, 245);
+            }
+
+            // font-family: 'Bahnschrift Light Condensed';
+            //font-size: 15px;
+            //font-weight: 100;
+
+            // OUTERMOST list element containers
+            ul > li, ol > li {
+                margin-bottom: 5px;
+            }
+
+            .REY_SECTION_TYPE1 {
+                ul > li, ol > li {
+                    margin-bottom: -3px;
+                }
+            }
+            .REY_SECTION_TYPE2 {
+                line-height: 18px;
+                ul > li, ol > li {
+                    margin-bottom: -5px;
+                }
+
+                ul, li {
+                    margin-bottom: 10px;
+                }
+            }
+
+            
+            
+            pre {
+                max-width: 100%; /* Prevent overflow */
+            }
+
+            img {
+                max-width: 104%;
+                width:- 104%;
+                margin-left: -2%;
+                display: flex;
+            }
+        
+            pre {
+                line-height: 60%;
+                margin-bottom: 0px;
+            }
+            pre > code {
+                font-size: 60%;
+                white-space: pre-wrap; /* Enable word wrap */
+                word-wrap: break-word; /* Break words that exceed the width */
+                word-break: normal;
+                overflow-wrap: break-word; /* Prevent overflow */
+            }
+        }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+/**
+@page { 
+    size: A4;
+
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-outside: 1.5cm;
+    margin-inside: 1.5cm;
+
+    prince-image-resolution: 300dpi;
+
+    @bottom-center {
+        content: counter(page);
+        margin: 0;
+        margin-top: -1.3cm;
+        padding: 0;
+    }
+}
+
+
+@page { 
+    // size: 1050px 1550px;
+        // 18px = 13.5pt
+        // 16px = 12pt
+        // 14px = 10.5pt
+
+    margin-top: 0cm;
+    margin-bottom: -0.5cm;
+    margin-left: -1cm;
+    margin-right: -1cm;
+    margin-outside: 0;
+    margin-inside: 0;
+
+    prince-image-resolution: 300dpi;
+
+    @bottom-center {
+        content: counter(page);
+        margin: 0;
+        margin-top: -2cm;
+        padding: 0;
+    }
+}
+/**/
+
+@page {
+    @bottom-left {
+        content: counter(page);
+        margin: 0;
+        margin-top: -1cm;
+        margin-left: 0.3cm;
+        padding: 0;
+    }
+}
+
+
+
+/**
+    MarkDown File Top part:-
+    ---
+    id: "amVK_Docs"
+    class: "DocumentClass1"
+    ---
+*/
+.DocumentClass1 {
+    @page {
+    }
+}
