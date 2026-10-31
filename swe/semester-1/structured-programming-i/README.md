@@ -12,5 +12,8 @@ Programming in ANSI C (E. Balagurusamy).
   - [01 Print Handout — Part 1](slides/01-handout-part1.pdf) · [Part 2](slides/01-handout-part2.pdf)
   - [02 Print Handout — Part 1](slides/02-handout-part1.pdf) · [Part 2](slides/02-handout-part2.pdf)
   - 3 slides/page with note space, split for double-sided printing (same Part 1/Part 2 method as SWE 4101)
+  - Also uploaded: Lectures 0, 1, 2, 3, 4, 5, 6, 9 (Getting Started through Program Organization)
+- [Lab Tasks (CSE 4108)](lab-tasks/) — Lab 2 through Lab 14
+- [Exam Questions](exam-questions/) — [Mid-term](exam-questions/mid-term.pdf) · [Final](exam-questions/final.pdf)
 - [Syllabus, Routine & Notices](syllabus-routine-notice.md)
 - [Notes](notes/) — formatted per [note-format.md](../../templates/note-format.md)
