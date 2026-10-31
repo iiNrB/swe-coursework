@@ -1,0 +1,222 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>C Programming Progress</title>
+<style id="page-style">
+:root{
+  --bg:#F7F5F1; --surface:#FFFFFF; --ink:#211D18; --muted:#6B6358; --line:#DCD7CB;
+  --accent:#6A1B9A; --accent-soft:#F1E7F7; --accent-dark:#4A148C;
+  --good:#2E7D32; --good-soft:#E6F2E7;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26;
+    --accent:#B57EDC; --accent-soft:#2A1E33; --accent-dark:#D9B3F0;
+    --good:#66BB6A; --good-soft:#1C2E1D;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --surface:#1E1B16; --ink:#F2EEE6; --muted:#A79F8F; --line:#332E26;
+  --accent:#B57EDC; --accent-soft:#2A1E33; --accent-dark:#D9B3F0;
+  --good:#66BB6A; --good-soft:#1C2E1D;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap');
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Hind Siliguri',system-ui,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:22px 40px;
+}
+.wrap{max-width:720px; margin:0 auto}
+
+.eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin:0 0 6px}
+h1{font-size:clamp(20px,4vw,26px); margin:0 0 4px}
+.sub{color:var(--muted); font-size:13px; margin:0 0 18px}
+
+.overall{
+  background:var(--surface); border:1px solid var(--line); border-radius:12px;
+  padding:18px 20px; margin-bottom:20px;
+}
+.overall-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px}
+.overall-pct{font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; color:var(--accent)}
+.overall-label{font-size:12.5px; color:var(--muted)}
+.bar-track{height:12px; border-radius:999px; background:var(--accent-soft); overflow:hidden}
+.bar-fill{height:100%; background:var(--accent); border-radius:999px; transition:width .3s}
+
+.topic{
+  background:var(--surface); border:1px solid var(--line); border-radius:10px;
+  padding:14px 16px; margin-bottom:10px;
+}
+.topic.done{border-color:var(--good)}
+.topic-head{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px}
+.topic-name{font-size:14px; font-weight:600; display:flex; align-items:center; gap:8px}
+.topic-num{
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  background:var(--accent-soft); color:var(--accent-dark); border-radius:999px;
+  width:20px; height:20px; display:flex; align-items:center; justify-content:center; flex:none;
+}
+.topic-mini-track{width:70px; height:6px; border-radius:999px; background:var(--accent-soft); overflow:hidden; flex:none}
+.topic-mini-fill{height:100%; background:var(--accent); border-radius:999px}
+.topic.done .topic-mini-fill{background:var(--good)}
+
+.checks{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px}
+.check{
+  display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--ink);
+  padding:6px 8px; border-radius:6px; cursor:pointer; border:1px solid transparent;
+}
+.check:hover{background:var(--accent-soft)}
+.check input{width:15px; height:15px; accent-color:var(--accent); flex:none; cursor:pointer}
+.check.checked{color:var(--muted); text-decoration:line-through}
+
+.exam{
+  background:var(--accent-soft); border:2px dashed var(--accent); border-radius:12px;
+  padding:16px 18px; margin-top:16px; text-align:center;
+}
+.exam.ready{background:var(--good-soft); border-color:var(--good); border-style:solid}
+.exam-label{font-weight:700; font-size:15px; margin-bottom:6px}
+.exam-sub{font-size:12px; color:var(--muted); margin-bottom:10px}
+.exam .check{justify-content:center; font-size:13.5px; font-weight:600}
+
+footer{margin-top:18px; font-size:11.5px; color:var(--muted); line-height:1.6; text-align:center}
+</style>
+
+<div id="app"></div>
+
+<script id="page-script">
+(function(){
+  var TOPICS = [
+    "Getting Started / Intro to C",
+    "C Fundamentals (ভেরিয়েবল, ডেটা টাইপ)",
+    "Formatted I/O (printf/scanf)",
+    "Expressions & Operators",
+    "Selection Statements (if/else, switch)",
+    "Loops",
+    "Basic Types",
+    "Arrays",
+    "Functions & Recursion",
+    "Program Organization",
+    "Pointers",
+    "Strings",
+    "Structures & Unions",
+    "File I/O",
+    "Dynamic Memory Allocation"
+  ];
+  var STEPS = [
+    {key:"rec",   label:"ক্লাস রেকর্ডিং দেখা"},
+    {key:"prac",  label:"ক্লাস প্র্যাকটিস"},
+    {key:"harry", label:"Harry হ্যান্ডবুক চ্যাপ্টার"},
+    {key:"king",  label:"K.N. King প্র্যাকটিস"}
+  ];
+
+  var STATE = window.__INITIAL_STATE__ || { topics: TOPICS.map(function(){ return {rec:false,prac:false,harry:false,king:false}; }), exam:false };
+
+  function totalItems(){ return TOPICS.length * STEPS.length + 1; }
+  function doneItems(s){
+    var n = 0;
+    for (var i=0;i<TOPICS.length;i++){
+      var t = s.topics[i];
+      for (var j=0;j<STEPS.length;j++) if (t[STEPS[j].key]) n++;
+    }
+    if (s.exam) n++;
+    return n;
+  }
+  function topicDoneCount(t){
+    var n=0; for (var j=0;j<STEPS.length;j++) if (t[STEPS[j].key]) n++; return n;
+  }
+
+  function renderBody(s){
+    var done = doneItems(s), total = totalItems();
+    var pct = Math.round((done/total)*100);
+    var allTopicsDone = TOPICS.every(function(_,i){ return topicDoneCount(s.topics[i]) === STEPS.length; });
+
+    var html = '';
+    html += '<div class="wrap">';
+    html += '<p class="eyebrow">CSE 4107 &middot; Structured Programming I</p>';
+    html += '<h1>C প্রোগ্রামিং প্রগ্রেস ট্র্যাকার</h1>';
+    html += '<p class="sub">প্রতিটা টপিকে ৪টা ধাপ &mdash; ক্লাস রেকর্ডিং, ক্লাস প্র্যাকটিস, Harry-র হ্যান্ডবুক চ্যাপ্টার, তারপর K.N. King প্র্যাকটিস। সব টপিক শেষ হলে এক্সাম।</p>';
+
+    html += '<div class="overall">';
+    html += '<div class="overall-top"><span class="overall-pct">'+pct+'%</span><span class="overall-label">'+done+' / '+total+' ধাপ সম্পন্ন</span></div>';
+    html += '<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div>';
+    html += '</div>';
+
+    html += '<div>';
+    for (var i=0;i<TOPICS.length;i++){
+      var t = s.topics[i];
+      var tDone = topicDoneCount(t);
+      var tPct = Math.round((tDone/STEPS.length)*100);
+      var isDone = tDone === STEPS.length;
+      html += '<div class="topic'+(isDone?' done':'')+'">';
+      html += '<div class="topic-head"><div class="topic-name"><span class="topic-num">'+(i+1)+'</span>'+TOPICS[i]+'</div>';
+      html += '<div class="topic-mini-track"><div class="topic-mini-fill" style="width:'+tPct+'%"></div></div></div>';
+      html += '<div class="checks">';
+      for (var j=0;j<STEPS.length;j++){
+        var st = STEPS[j];
+        var checked = !!t[st.key];
+        html += '<label class="check'+(checked?' checked':'')+'">';
+        html += '<input type="checkbox" '+(checked?'checked':'')+' data-topic="'+i+'" data-step="'+st.key+'">';
+        html += '<span>'+st.label+'</span></label>';
+      }
+      html += '</div></div>';
+    }
+    html += '</div>';
+
+    html += '<div class="exam'+(allTopicsDone?' ready':'')+'">';
+    html += '<div class="exam-label">🎯 Exam</div>';
+    html += '<div class="exam-sub">'+(allTopicsDone ? 'সব টপিক শেষ, এক্সামের জন্য প্রস্তুত!' : 'সব টপিকের সব ধাপ শেষ হলেই এটা রেডি')+'</div>';
+    html += '<label class="check"><input type="checkbox" '+(s.exam?'checked':'')+' data-exam="1"><span>Exam দেওয়া হয়ে গেছে</span></label>';
+    html += '</div>';
+
+    html += '<footer>প্রতিটা ক্লিকে অটো-সেভ হয় (artifact capability) &mdash; ব্রাউজার/ডিভাইস বদলালেও প্রগ্রেস থাকবে।</footer>';
+    html += '</div>';
+    return html;
+  }
+
+  function fullDocument(s){
+    var head = '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>';
+    var foot = '</body></html>';
+    var titleAndStyle = '<meta name="claude:viewport-fit-sides" content="cover"><title>C Programming Progress</title>' + document.getElementById('page-style').outerHTML;
+    var appDiv = '<div id="app">' + renderBody(s) + '</div>';
+    var stateScript = '<script>window.__INITIAL_STATE__=' + JSON.stringify(s) + ';<' + '/script>';
+    var pageScript = '<script id="page-script">' + document.getElementById('page-script').textContent + '<' + '/script>';
+    return head + titleAndStyle + appDiv + stateScript + pageScript + foot;
+  }
+
+  function mount(s){
+    document.getElementById('app').innerHTML = renderBody(s);
+    wireEvents(s);
+  }
+
+  async function persist(s){
+    if (!window.claude || !window.claude.use) return;
+    try{
+      var artifact = await window.claude.use('artifact');
+      if (!artifact) return;
+      await artifact.publish(fullDocument(s));
+    }catch(e){ /* conflict or not_granted: local view already updated */ }
+  }
+
+  function wireEvents(s){
+    var app = document.getElementById('app');
+    var boxes = app.querySelectorAll('input[type=checkbox]');
+    for (var k=0;k<boxes.length;k++){
+      boxes[k].addEventListener('change', (function(cb){
+        return function(){
+          if (cb.dataset.exam){
+            s.exam = cb.checked;
+          } else {
+            var ti = parseInt(cb.dataset.topic,10);
+            s.topics[ti][cb.dataset.step] = cb.checked;
+          }
+          mount(s);
+          persist(s);
+        };
+      })(boxes[k]));
+    }
+  }
+
+  mount(STATE);
+})();
+</script>
