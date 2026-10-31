@@ -127,17 +127,92 @@ maturity. Your "Structured Programming I" course barely scratches this.
 - English fluency (written and spoken) — especially relevant for
   Silicon Valley roles and international grad programs.
 
-## How to actually use this list
+## Semester-by-Semester Plan
 
-Don't try to do all nine sections in parallel. A reasonable sequencing:
+Don't try to do all nine sections in parallel. IUT runs 2 semesters/year
+(Winter + Summer), 8 semesters total over 4 years. Section numbers below
+refer back to the sections above. This is a guide, not a rigid schedule —
+shift things around based on how each semester's course load actually
+feels.
 
-- **Year 1-2**: DSA (continuous), CS fundamentals (OS/networks/DB) as
-  electives/self-study, start one real personal project, pick up
-  Linux/Git fluency, consider joining the ICPC team.
-- **Year 2-3**: System design basics, build 2nd/3rd project, start
-  approaching professors for research if grad school interests you,
-  first internship applications, open-source contribution.
-- **Year 3-4**: Internships, interview prep (DSA + system design +
-  behavioral) if going industry, or research writeup + SOP + LOR
-  groundwork if going grad school. Keep building — don't stop at 2-3
-  finished projects.
+### Semester 1 — Winter, Year 1 *(current)*
+- **DSA (§1)**: arrays, strings, linked lists, stacks/queues, recursion —
+  pairs naturally with Structured Programming I. Solve ~5-10 easy LeetCode
+  problems/week as a habit, not a sprint.
+- **Tools (§5)**: get comfortable in the Linux terminal; learn Git beyond
+  add/commit/push (branches, merge conflicts).
+- Look into IUT's ICPC/competitive-programming group if one exists —
+  easiest to join before you're busy with upper-year courses.
+
+### Semester 2 — Summer, Year 1
+- **DSA (§1)**: sorting/searching, hashing, intro trees (BST) and binary
+  heaps. Move from easy to easy/medium LeetCode.
+- **Web basics (§4)**: HTML/CSS/JS — enough to build one small static
+  page or a simple form-driven site.
+- **SWE practice (§3)**: write your first real unit tests for something
+  you built, even a small script.
+- Start your **first personal project** (§4) — small and finishable beats
+  big and abandoned.
+
+### Semester 3 — Winter, Year 2
+- **DSA (§1)**: trees deeper, graphs (BFS/DFS), basic recursion-heavy
+  problems. If you joined a CP group, start rated contests.
+- **CS fundamentals (§2)**: start Operating Systems self-study (processes,
+  threads, scheduling) — it isn't deep in the core curriculum until later,
+  if at all.
+- **Databases (§2)**: learn real SQL — schema design, joins, indexes —
+  not just SELECT/INSERT.
+
+### Semester 4 — Summer, Year 2
+- **DSA (§1)**: dynamic programming (the big one — budget real time here),
+  greedy algorithms, shortest-path/MST on graphs.
+- **CS fundamentals (§2)**: Computer Networks self-study (TCP/IP, HTTP,
+  DNS).
+- **Web/projects (§4)**: pick one frontend framework (React) or backend
+  framework (Node/Express, Django, Flask) and build **project #2** with it
+  — something with a real backend, not just static pages.
+- If grad school interests you: start a casual conversation with a
+  professor whose work interests you (§7) — too early to ask for a
+  position, not too early to be on their radar.
+
+### Semester 5 — Winter, Year 3
+- **System design (§3)**: start with the basics — how a URL shortener,
+  a chat app, a simple feed are designed. No need for depth yet.
+- **Tools (§5)**: Docker — containerize something you've already built;
+  pick one cloud provider and do its free-tier fundamentals.
+- **Research (§7)**: if grad school is the goal, this is the semester to
+  actually start assisting a professor, even unpaid/informal.
+- Start applying for your **first internship** (§6) — summer between
+  Year 3 and Year 4 is a common internship window.
+
+### Semester 6 — Summer, Year 3
+- **System design (§3)**: go deeper — read a chapter of *Designing
+  Data-Intensive Applications* or work through the System Design Primer.
+- **Open source (§4)**: make your first real contribution (docs or a bug
+  fix is a fine start).
+- **Project #3** (§4): something more ambitious, ideally touching a real
+  problem you care about — this is your strongest portfolio piece.
+- If in a research track: aim to have a concrete writeup or draft result
+  by the end of this semester.
+
+### Semester 7 — Winter, Year 4
+- **Interview prep (§6)**: DSA mock interviews, 5-6 behavioral stories
+  in STAR format, resume/LinkedIn overhaul.
+- **System design (§6)**: mock interviews specifically, not just reading.
+- **If going grad school (§7)**: finalize your Statement of Purpose, ask
+  for LORs now (professors need lead time), sit IELTS/TOEFL if required,
+  check each target program's specific deadlines — many are as early as
+  December for Fall admission the following year.
+- Submit full-time job and/or grad school applications this semester or
+  early next — deadlines for both tracks tend to land around here.
+
+### Semester 8 — Summer, Year 4
+- **Final rounds (§6/§7)**: onsite/virtual interview loops, or grad
+  school admission decisions and funding negotiations.
+- Finish and polish whatever projects/research/open-source work is still
+  open — this is your last semester to add anything to the portfolio
+  before it's "final."
+- Capstone/thesis if your program has one — make it genuinely good, it's
+  often the most substantial thing on your resume/CV at graduation.
+- Start transition prep for whatever's next: relocation logistics for a
+  job, or program start-date requirements for grad school.
