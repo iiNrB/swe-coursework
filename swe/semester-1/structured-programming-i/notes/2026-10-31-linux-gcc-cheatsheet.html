@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<title>Linux &amp; GCC Cheat Sheet — CSE 4108 Lab</title>
+<style>
+:root{
+  --bg:#F7F5F1; --surface:#FFFFFF; --ink:#211D18; --muted:#6B6358; --line:#D8D2C4; --accent:#6A1B9A;
+}
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+body{
+  background:var(--bg); color:var(--ink); margin:0;
+  font-family:'Hind Siliguri',system-ui,sans-serif;
+}
+.sheet{padding:10mm 12mm}
+
+.page-header{
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  margin-bottom:4mm; padding-bottom:2.5mm; border-bottom:2px solid var(--accent);
+}
+.ph-left{display:flex; align-items:center; gap:9px}
+.lab-badge{
+  font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; letter-spacing:.08em;
+  background:var(--accent); color:#fff; padding:3px 12px; border-radius:4px;
+}
+.ph-title{font-size:13px; font-weight:700; color:var(--ink)}
+.ph-right{color:var(--muted); font-size:10.5px}
+
+h2{
+  font-size:13px; color:var(--accent); margin:5mm 0 2mm; letter-spacing:.03em;
+  border-bottom:1px solid var(--line); padding-bottom:1.2mm;
+}
+h2:first-of-type{margin-top:0}
+
+table{width:100%; border-collapse:collapse; font-size:9.3px}
+td{padding:1.6px 6px 1.6px 0; vertical-align:top; line-height:1.38}
+td.cmd{white-space:nowrap; width:1%}
+code{
+  font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700;
+  background:color-mix(in srgb, var(--accent) 9%, var(--surface));
+  color:var(--accent); padding:1px 4px; border-radius:2px;
+}
+.purpose{color:var(--muted)}
+
+.cols2{display:flex; gap:8mm}
+.cols2 table{width:50%}
+
+.note{
+  margin-top:4mm; font-size:9px; color:var(--muted); line-height:1.5;
+  border-top:1px solid var(--line); padding-top:2mm;
+}
+
+@page{ size: A4 portrait; margin: 4mm 6mm; }
+@media print{
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="page-header">
+    <div class="ph-left"><span class="lab-badge">LAB</span><span class="ph-title">CSE 4108 — Structured Programming I Lab — Linux &amp; GCC Cheat Sheet</span></div>
+    <div class="ph-right">2026-10-31</div>
+  </div>
+
+  <h2>COMMANDS</h2>
+  <div class="cols2">
+  <table>
+    <tr><td class="cmd"><code>pwd</code></td><td class="purpose">current directory</td></tr>
+    <tr><td class="cmd"><code>ls</code></td><td class="purpose">list files/folders</td></tr>
+    <tr><td class="cmd"><code>cd</code></td><td class="purpose">change directory</td></tr>
+    <tr><td class="cmd"><code>tree</code></td><td class="purpose">folder structure as a tree</td></tr>
+    <tr><td class="cmd"><code>cp</code></td><td class="purpose">copy files/folders</td></tr>
+    <tr><td class="cmd"><code>mv</code></td><td class="purpose">move/rename files/folders</td></tr>
+    <tr><td class="cmd"><code>rm</code></td><td class="purpose">delete files</td></tr>
+    <tr><td class="cmd"><code>mkdir</code></td><td class="purpose">create a new folder</td></tr>
+    <tr><td class="cmd"><code>touch</code></td><td class="purpose">create an empty file</td></tr>
+    <tr><td class="cmd"><code>rmdir</code></td><td class="purpose">delete an empty folder</td></tr>
+    <tr><td class="cmd"><code>cat</code></td><td class="purpose">print whole file content</td></tr>
+    <tr><td class="cmd"><code>less</code></td><td class="purpose">scroll through a large file</td></tr>
+    <tr><td class="cmd"><code>head</code> / <code>tail</code></td><td class="purpose">first/last lines of a file</td></tr>
+    <tr><td class="cmd"><code>nano</code> / <code>vim</code></td><td class="purpose">terminal text editors</td></tr>
+    <tr><td class="cmd"><code>chmod</code></td><td class="purpose">change file permissions</td></tr>
+    <tr><td class="cmd"><code>chown</code></td><td class="purpose">change file owner</td></tr>
+    <tr><td class="cmd"><code>find</code></td><td class="purpose">search for files</td></tr>
+    <tr><td class="cmd"><code>grep</code></td><td class="purpose">search text inside files</td></tr>
+    <tr><td class="cmd"><code>locate</code></td><td class="purpose">fast indexed file search</td></tr>
+  </table>
+  <table>
+    <tr><td class="cmd"><code>man</code></td><td class="purpose">manual for a command</td></tr>
+    <tr><td class="cmd"><code>gcc</code></td><td class="purpose">compile C code</td></tr>
+    <tr><td class="cmd"><code>gdb</code></td><td class="purpose">debug a compiled program</td></tr>
+    <tr><td class="cmd"><code>make</code></td><td class="purpose">build multi-file projects</td></tr>
+    <tr><td class="cmd"><code>apt</code></td><td class="purpose">install/remove/update packages</td></tr>
+    <tr><td class="cmd"><code>dpkg</code></td><td class="purpose">installed-package info</td></tr>
+    <tr><td class="cmd"><code>ps</code></td><td class="purpose">list running processes</td></tr>
+    <tr><td class="cmd"><code>top</code> / <code>htop</code></td><td class="purpose">live CPU/memory usage</td></tr>
+    <tr><td class="cmd"><code>kill</code></td><td class="purpose">stop a process by PID</td></tr>
+    <tr><td class="cmd"><code>nohup</code></td><td class="purpose">keep running after terminal closes</td></tr>
+    <tr><td class="cmd"><code>jobs</code>/<code>fg</code>/<code>bg</code></td><td class="purpose">manage background jobs</td></tr>
+    <tr><td class="cmd"><code>df -h</code></td><td class="purpose">disk space usage</td></tr>
+    <tr><td class="cmd"><code>du -sh</code></td><td class="purpose">size of a folder</td></tr>
+    <tr><td class="cmd"><code>free -h</code></td><td class="purpose">RAM usage</td></tr>
+    <tr><td class="cmd"><code>ssh</code></td><td class="purpose">remote login</td></tr>
+    <tr><td class="cmd"><code>cron</code></td><td class="purpose">schedule automatic tasks</td></tr>
+    <tr><td class="cmd"><code>ping</code></td><td class="purpose">test connectivity</td></tr>
+    <tr><td class="cmd"><code>curl</code>/<code>wget</code></td><td class="purpose">download/request from web</td></tr>
+    <tr><td class="cmd"><code>git</code></td><td class="purpose">version control</td></tr>
+  </table>
+  </div>
+
+  <h2>SYMBOLS</h2>
+  <div class="cols2">
+  <table>
+    <tr><td class="cmd"><code>-x</code></td><td class="purpose">short flag — e.g. <code>ls -l</code></td></tr>
+    <tr><td class="cmd"><code>--word</code></td><td class="purpose">long flag — e.g. <code>--help</code></td></tr>
+    <tr><td class="cmd"><code>&gt;</code></td><td class="purpose">redirect output to file, overwrite</td></tr>
+    <tr><td class="cmd"><code>&gt;&gt;</code></td><td class="purpose">redirect output to file, append</td></tr>
+    <tr><td class="cmd"><code>&lt;</code></td><td class="purpose">take input from file</td></tr>
+    <tr><td class="cmd"><code>|</code></td><td class="purpose">pipe — feed output into next command</td></tr>
+    <tr><td class="cmd"><code>&amp;</code></td><td class="purpose">run command in background</td></tr>
+    <tr><td class="cmd"><code>&amp;&amp;</code></td><td class="purpose">run next command only if previous succeeded</td></tr>
+    <tr><td class="cmd"><code>;</code></td><td class="purpose">run commands one after another regardless</td></tr>
+  </table>
+  <table>
+    <tr><td class="cmd"><code>*</code></td><td class="purpose">wildcard — matches anything</td></tr>
+    <tr><td class="cmd"><code>~</code></td><td class="purpose">home folder</td></tr>
+    <tr><td class="cmd"><code>.</code></td><td class="purpose">current folder</td></tr>
+    <tr><td class="cmd"><code>..</code></td><td class="purpose">parent folder</td></tr>
+    <tr><td class="cmd"><code>/</code></td><td class="purpose">root folder / path separator</td></tr>
+    <tr><td class="cmd"><code>$</code></td><td class="purpose">variable value — <code>echo $PATH</code></td></tr>
+    <tr><td class="cmd"><code>$1</code> <code>$2</code></td><td class="purpose">script arguments</td></tr>
+    <tr><td class="cmd"><code>#</code></td><td class="purpose">comment line</td></tr>
+    <tr><td class="cmd"><code>$?</code></td><td class="purpose">exit code of previous command (0 = ok)</td></tr>
+  </table>
+  </div>
+
+  <h2>GCC FLAGS</h2>
+  <table>
+    <tr><td class="cmd"><code>-o name</code></td><td class="purpose">set output executable name</td></tr>
+    <tr><td class="cmd"><code>-Wall</code></td><td class="purpose">show all warnings</td></tr>
+    <tr><td class="cmd"><code>-g</code></td><td class="purpose">include debug info (for <code>gdb</code>)</td></tr>
+  </table>
+
+  <div class="note">
+    সারাংশ: টার্মিনাল নেভিগেশন + ফাইল অপারেশন + gcc/gdb/make + redirection/pipe সাইনগুলো দৈনন্দিন লাগবে।
+    GUI-তে না গিয়ে টার্মিনাল দিয়ে ল্যাবের C ফাইল কম্পাইল-রান প্র্যাকটিস করলে দ্রুত অভ্যস্ত হবে।
+  </div>
+
+</div>
+</body>
+</html>
