@@ -23,3 +23,13 @@ course has every folder — only what's actually been provided):
 ├── exam-questions/    — this semester's current mid-term/final
 └── past-exams/        — older years' mid-term/final papers, for practice
 ```
+
+## Reference
+
+- [Academic Catalogue — CSE, IUT (2017–18 onwards)](academic-catalogue-cse-2017-18.pdf) —
+  official department catalogue with the full course structure and
+  detailed course descriptions (objectives, contents, recommended texts)
+  for every semester. Used to fill in missing syllabi where course codes
+  match exactly; note some codes have since changed (e.g. this catalogue's
+  Phy 4141/4241 vs. the current Phy 4143/4144 Physics II), so it's not
+  blindly applied where codes don't line up.
