@@ -1,0 +1,101 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Polynomial &amp; Horner Practice</title>
+<style>
+:root{
+  --bg:#F7F5F1; --surface:#FFFFFF; --ink:#211D18; --muted:#6B6358; --line:#DCD7CB;
+  --teal:#00838F; --orange:#EF6C00;
+}
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Hind Siliguri',system-ui,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:30px 40px;
+}
+.page{max-width:680px; margin:0 auto; background:var(--surface)}
+.stripe{display:flex; width:140px; height:6px; margin-bottom:18px}
+.stripe span{flex:1}
+.stripe .t{background:var(--teal)}
+.stripe .o{background:var(--orange)}
+
+h1{font-size:30px; margin:0 0 14px; font-weight:800}
+.meta{color:var(--muted); font-size:14px; line-height:1.6; margin-bottom:32px}
+.meta strong{color:var(--ink); display:block; font-size:15px}
+
+h2{font-size:21px; margin:34px 0 14px; font-weight:700}
+
+.problem{margin-bottom:26px}
+.problem-title{font-size:15px; font-weight:700; text-decoration:underline; margin-bottom:8px}
+.problem-body{font-size:14px; line-height:1.65; margin-bottom:10px}
+.formula{
+  text-align:center; font-size:17px; font-weight:600; margin:14px 0;
+  font-family:'JetBrains Mono',monospace;
+}
+.hint{font-size:13px; font-style:italic; color:var(--muted); line-height:1.6; margin-bottom:12px}
+.hint b{font-style:normal; color:var(--ink)}
+
+.sample-label{font-size:13.5px; font-weight:700; margin-bottom:4px}
+.sample{
+  background:#F4F2EC; border:1px solid var(--line); border-radius:4px;
+  padding:10px 14px; font-family:'JetBrains Mono',monospace; font-size:12.5px;
+  line-height:1.7; margin-bottom:8px; white-space:pre;
+}
+
+.note{
+  margin-top:30px; padding:12px 16px; border-left:3px solid var(--teal);
+  background:#EAF4F5; font-size:13px; color:var(--ink); line-height:1.6;
+}
+
+@page{ size: A4 portrait; margin: 14mm; }
+@media print{
+  body{ padding:0; background:#fff }
+  .page{ max-width:none }
+}
+</style>
+
+<div class="page">
+  <div class="stripe"><span class="t"></span><span class="o"></span></div>
+  <h1>Practice Set: Polynomial &amp; Horner's Rule</h1>
+  <div class="meta">
+    <strong>CSE 4108</strong>
+    Structured Programming I Lab — Extra Practice (not official, for self-study)
+  </div>
+
+  <div class="problem">
+    <div class="problem-title">1. Signal Strength Calculator:</div>
+    <div class="problem-body">
+      An antenna's signal strength (in dB) at a distance of <i>x</i> kilometers
+      follows the formula below. Write a C program that asks the user to
+      enter the value of <i>x</i> and outputs the signal strength.
+    </div>
+    <div class="formula">strength = &minus;2x<sup>4</sup> + 3x<sup>3</sup> &minus; x<sup>2</sup> + 5x + 100</div>
+    <div class="hint"><b>Hint:</b> C doesn't have an exponentiation operator, so you'll need to multiply <i>x</i> by itself repeatedly in order to compute the power of <i>x</i>. (For example: <i>x*x*x</i> is <i>x</i> cubed)</div>
+    <div class="sample-label">Sample Run:</div>
+    <div class="sample">Enter distance x: 2
+Signal strength: 70</div>
+  </div>
+
+  <div class="problem">
+    <div class="problem-title">2. Horner's Rule:</div>
+    <div class="problem-body">
+      Modify the program of the last task so that the signal strength is
+      evaluated using the following formula:
+    </div>
+    <div class="formula">strength = ((((&minus;2x + 3)x &minus; 1)x + 5)x + 100</div>
+    <div class="problem-body">
+      Note that the modified program performs fewer multiplications. This
+      technique for evaluating polynomials is known as <i>Horner's Rule</i>.
+    </div>
+    <div class="sample-label">Sample Run (same x, to verify both programs agree):</div>
+    <div class="sample">Enter distance x: 2
+Signal strength: 70</div>
+  </div>
+
+  <div class="note">
+    Do a pen-and-paper dry run of both formulas before coding, same as
+    Lab 01 Problems 2–3. If your two programs don't give the same output
+    for the same <i>x</i>, one of them has a bug — find it before moving on.
+  </div>
+</div>
