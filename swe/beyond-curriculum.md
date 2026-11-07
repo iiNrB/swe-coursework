@@ -216,3 +216,39 @@ feels.
   often the most substantial thing on your resume/CV at graduation.
 - Start transition prep for whatever's next: relocation logistics for a
   job, or program start-date requirements for grad school.
+
+## Appendix: Starting Resources (CSE/C/C++/DSA)
+
+A curated starting list for §1 (DSA) and early CS fundamentals — useful
+from Semester 1 onward.
+
+### YouTube playlists to follow
+1. [C Programming Core Basics](https://www.youtube.com/playlist?list=PLBlnK6fEyqRggZZgYpPMUxdY1CYkZtARR)
+2. [C++ (after partially completing C basics)](https://www.youtube.com/watch?v=-TkoO8Z07hI&t=5358s)
+3. [Competitive Programming](https://www.youtube.com/playlist?list=PLauivoElc3ggagradg8MfOZreCMmXMmJ-)
+4. [Data Structures & Algorithms (short version)](https://www.youtube.com/playlist?list=PLym69wpbTIIEOesltWGUsVnY9HDWbJit_)
+
+### Channels worth subscribing to
+- [Neso Academy](https://www.youtube.com/@nesoacademy)
+- [Bro Code](https://www.youtube.com/@BroCodez)
+- [Jenny's Lectures CS/IT](https://www.youtube.com/@JennyslecturesCSIT)
+- [Apna College](https://www.youtube.com/@ApnaCollegeOfficial)
+- [freeCodeCamp](https://www.youtube.com/@freecodecamp)
+- [Luv](https://www.youtube.com/@iamluv)
+- [Anisul Islam](https://www.youtube.com/@anisul-islam)
+
+### Accounts to set up (use one consistent username everywhere)
+- [GitHub](https://github.com/)
+- [Codeforces](https://codeforces.com/)
+- [Replit](https://replit.com/~)
+- [Vjudge](https://vjudge.net/)
+- [HackerRank](https://www.hackerrank.com/dashboard)
+
+### Practice & reference sites
+- [IncludeHelp](https://www.includehelp.com/)
+- [GeeksforGeeks](https://www.geeksforgeeks.org/)
+- [W3Resource](https://www.w3resource.com/index.php)
+- [Stack Overflow](https://stackoverflow.com/)
+
+### Online compiler
+- [Programiz C Compiler](https://www.programiz.com/c-programming/online-compiler/)
