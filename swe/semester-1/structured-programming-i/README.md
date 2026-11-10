@@ -15,7 +15,7 @@ Programming in ANSI C (E. Balagurusamy).
   - Also uploaded: Lectures 0, 1, 2, 3, 4, 5, 6, 9 (Getting Started through Program Organization) — this is the swe23 batch's slide set
   - Other batches' slide sets: [cse19](slides/cse19/) · [swe22](slides/swe22/) · [swe24](slides/swe24/) (swe24 also has [editable .pptx](slides/swe24/pptx/))
 - [Books](books/) — C Programming: A Modern Approach (K.N. King)
-- [Lab Tasks (CSE 4108)](lab-tasks/) — Lab 1 through Lab 14 ([Lab 1](lab-tasks/Lab-01.pdf) is this semester's own Group B sheet; Lab 2–14 are from the community archive)
+- [Lab Tasks (CSE 4108)](lab-tasks/) — Lab 1 through Lab 14 ([Lab 1](lab-tasks/Lab-01.pdf) and [Lab 2](lab-tasks/Lab-02-group-b.pdf) are this semester's own Group B sheets; the plain Lab 2–14 are from the community archive — Lab 2's own sheet is kept separately as `Lab-02-group-b.pdf` since the archive already uses that number)
 - [Quizzes](quizzes/) — cse22 and swe24 quiz papers
 - [Exam Questions](exam-questions/) — this semester's [Mid-term](exam-questions/mid-term.pdf) · [Final](exam-questions/final.pdf)
 - [Past Exams Archive](past-exams/) — older [mid-term](past-exams/mid/) and [final](past-exams/final/) papers from cse16–23 and swe17–24, for practice
