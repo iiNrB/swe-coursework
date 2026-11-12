@@ -8,14 +8,16 @@ Programming in ANSI C (E. Balagurusamy).
 
 - [Cover Page — Theory (CSE 4107)](cover-page.pdf) · [Lab (CSE 4108)](cover-page-lab.pdf) — printable A4 notebook covers, color-coded
 - [Course Outline / Catalogue](outline/) — [OBE course outline](outline/OBE-course-outline.pdf) (weekly plan, grading policy, CO/PO mapping), SWE/CSE catalogues (2024), batch outlines (swe23, swe24)
-- [Lecture Slides](slides/) — 01 Introduction to C, 02 C Fundamentals
+- [Lecture Slides](slides/) — 01 Introduction to C, 02 C Fundamentals, 03 Formatted I/O, 04 Expressions
   - [01 Print Handout — Part 1](slides/handouts/01-handout-part1.pdf) · [Part 2](slides/handouts/01-handout-part2.pdf)
   - [02 Print Handout — Part 1](slides/handouts/02-handout-part1.pdf) · [Part 2](slides/handouts/02-handout-part2.pdf)
+  - [03 Print Handout — Part 1](slides/handouts/03-handout-part1.pdf) · [Part 2](slides/handouts/03-handout-part2.pdf)
+  - [04 Print Handout — Part 1](slides/handouts/04-handout-part1.pdf) · [Part 2](slides/handouts/04-handout-part2.pdf)
   - 3 slides/page with note space, split for double-sided printing (same Part 1/Part 2 method as SWE 4101)
-  - 01 and 02 are confirmed Shahriar Ivan's own slides (his name is on the title slide) — print handouts are only made from these
+  - 01–04 are confirmed Shahriar Ivan's own slides (his name is on each title slide) — print handouts are only made from these
+  - [current](slides/current/) — editable [.pptx of 04 Expressions](slides/current/04-Expressions.pptx)
   - Also uploaded, for reference only (**not** Shahriar Ivan's slides — a different instructor, Asaduzzaman Horok, per the title slide; no handouts generated from these): Lectures 0, 1, 2, 3, 4, 5, 6, 9 (Getting Started through Program Organization), the swe23 batch's slide set
   - Other batches' slide sets, also reference-only community archive material: [cse19](slides/cse19/) · [swe22](slides/swe22/) · [swe24](slides/swe24/) (swe24 also has [editable .pptx](slides/swe24/pptx/))
-  - [current](slides/current/) — this semester's own updated [04 Expressions](slides/current/04-Expressions.pptx) (differs from the archived swe24 version — kept separately rather than overwriting it)
 - [Books](books/) — C Programming: A Modern Approach (K.N. King) · [Teach Yourself C](books/Teach-Yourself-C-Schildt.pdf) (Herbert Schildt)
 - [Lab Tasks (CSE 4108)](lab-tasks/) — Lab 1 through Lab 14 ([Lab 1](lab-tasks/Lab-01.pdf) and [Lab 2](lab-tasks/Lab-02-group-b.pdf) are this semester's own Group B sheets; the plain Lab 2–14 are from the community archive — Lab 2's own sheet is kept separately as `Lab-02-group-b.pdf` since the archive already uses that number)
 - [Quizzes](quizzes/) — cse22 and swe24 quiz papers
