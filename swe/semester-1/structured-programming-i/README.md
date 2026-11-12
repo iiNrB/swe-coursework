@@ -14,7 +14,8 @@ Programming in ANSI C (E. Balagurusamy).
   - 3 slides/page with note space, split for double-sided printing (same Part 1/Part 2 method as SWE 4101)
   - Also uploaded: Lectures 0, 1, 2, 3, 4, 5, 6, 9 (Getting Started through Program Organization) — this is the swe23 batch's slide set
   - Other batches' slide sets: [cse19](slides/cse19/) · [swe22](slides/swe22/) · [swe24](slides/swe24/) (swe24 also has [editable .pptx](slides/swe24/pptx/))
-- [Books](books/) — C Programming: A Modern Approach (K.N. King)
+  - [current](slides/current/) — this semester's own updated [04 Expressions](slides/current/04-Expressions.pptx) (differs from the archived swe24 version — kept separately rather than overwriting it)
+- [Books](books/) — C Programming: A Modern Approach (K.N. King) · [Teach Yourself C](books/Teach-Yourself-C-Schildt.pdf) (Herbert Schildt)
 - [Lab Tasks (CSE 4108)](lab-tasks/) — Lab 1 through Lab 14 ([Lab 1](lab-tasks/Lab-01.pdf) and [Lab 2](lab-tasks/Lab-02-group-b.pdf) are this semester's own Group B sheets; the plain Lab 2–14 are from the community archive — Lab 2's own sheet is kept separately as `Lab-02-group-b.pdf` since the archive already uses that number)
 - [Quizzes](quizzes/) — cse22 and swe24 quiz papers
 - [Exam Questions](exam-questions/) — this semester's [Mid-term](exam-questions/mid-term.pdf) · [Final](exam-questions/final.pdf)
