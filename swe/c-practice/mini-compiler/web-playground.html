@@ -403,6 +403,8 @@ function run(program){
 
   let out='';
   let divZeroLine=null;
+  const nowMs=()=> (typeof performance!=='undefined' ? performance.now() : Date.now());
+  const execStart=nowMs();
 
   function evalExpr(e){
     switch(e.kind){
@@ -481,7 +483,12 @@ function run(program){
         return;
       case 'while': {
         let guard=0;
-        while(evalExpr(s.cond)!==0){ execStmt(s.body); if(++guard>200000) throw {infiniteLoop:true}; }
+        while(evalExpr(s.cond)!==0){
+          execStmt(s.body);
+          guard++;
+          if(guard % 500===0 && (nowMs()-execStart)>1200) throw {infiniteLoop:true};
+          if(out.length>100000) throw {infiniteLoop:true};
+        }
         return;
       }
       case 'printf': {
@@ -489,6 +496,7 @@ function run(program){
         const t=typeOf(s.arg);
         const v=evalExpr(s.arg);
         out+=formatPrintf(s.fmt, true, v, t==='float');
+        if(out.length>100000) throw {infiniteLoop:true};
         return;
       }
     }
@@ -500,7 +508,7 @@ function run(program){
     execStmt(program);
   } catch(ex){
     if(ex && ex.divByZero) return {errors:null, out, runtimeError:`division by zero at line ${divZeroLine}`};
-    if(ex && ex.infiniteLoop) return {errors:null, out, runtimeError:'while loop ran too long (possible infinite loop) — stopped'};
+    if(ex && ex.infiniteLoop) return {errors:null, out, runtimeError:'stopped: this loop ran too long or printed too much output (possible infinite loop)'};
     return {errors:null, out, runtimeError:String(ex)};
   }
   return {errors:null, out};
@@ -521,6 +529,68 @@ function syncGutter(){
 }
 codeEl.addEventListener('input', syncGutter);
 codeEl.addEventListener('scroll', ()=>{ gutterEl.scrollTop=codeEl.scrollTop; });
+
+/* basic VS Code-style editing: auto-close brackets/quotes, type-over, smart
+   backspace, and auto-indent (including expanding {} onto its own line) */
+function setEditorValue(ta, newValue, start, end){
+  ta.value=newValue;
+  ta.selectionStart=start;
+  ta.selectionEnd=end;
+  ta.dispatchEvent(new Event('input'));
+}
+const BRACKET_PAIRS={'(':')','[':']','{':'}'};
+const CLOSERS=new Set(Object.values(BRACKET_PAIRS));
+codeEl.addEventListener('keydown', e=>{
+  const ta=e.target, val=ta.value, s=ta.selectionStart, en=ta.selectionEnd;
+
+  if(BRACKET_PAIRS[e.key]){
+    e.preventDefault();
+    const close=BRACKET_PAIRS[e.key];
+    if(s!==en){
+      setEditorValue(ta, val.slice(0,s)+e.key+val.slice(s,en)+close+val.slice(en), s+1, en+1);
+    } else {
+      setEditorValue(ta, val.slice(0,s)+e.key+close+val.slice(en), s+1, s+1);
+    }
+    return;
+  }
+  if(CLOSERS.has(e.key) && s===en && val[s]===e.key){
+    e.preventDefault();
+    setEditorValue(ta, val, s+1, s+1);
+    return;
+  }
+  if(e.key==='"'){
+    e.preventDefault();
+    if(s===en && val[s]==='"'){ setEditorValue(ta, val, s+1, s+1); }
+    else if(s!==en){ setEditorValue(ta, val.slice(0,s)+'"'+val.slice(s,en)+'"'+val.slice(en), s+1, en+1); }
+    else { setEditorValue(ta, val.slice(0,s)+'""'+val.slice(en), s+1, s+1); }
+    return;
+  }
+  if(e.key==='Backspace' && s===en && s>0){
+    const prev=val[s-1], next=val[s];
+    if(BRACKET_PAIRS[prev]===next || (prev==='"' && next==='"')){
+      e.preventDefault();
+      setEditorValue(ta, val.slice(0,s-1)+val.slice(s+1), s-1, s-1);
+      return;
+    }
+  }
+  if(e.key==='Enter'){
+    e.preventDefault();
+    const lineStart=val.lastIndexOf('\n', s-1)+1;
+    const indent=(val.slice(lineStart,s).match(/^[ \t]*/)||[''])[0];
+    const prevChar=val[s-1], nextChar=val[s];
+    if(prevChar==='{' && nextChar==='}'){
+      const inner=indent+'    ';
+      setEditorValue(ta, val.slice(0,s)+'\n'+inner+'\n'+indent+val.slice(en), s+1+inner.length, s+1+inner.length);
+    } else {
+      setEditorValue(ta, val.slice(0,s)+'\n'+indent+val.slice(en), s+1+indent.length, s+1+indent.length);
+    }
+    return;
+  }
+  if(e.key==='Tab'){
+    e.preventDefault();
+    setEditorValue(ta, val.slice(0,s)+'    '+val.slice(en), s+4, s+4);
+  }
+});
 
 function loadExample(key){
   codeEl.value=EXAMPLES[key];
