@@ -83,6 +83,7 @@ textarea{
     <option value="error_demo">error_demo.c (intentionally broken)</option>
   </select>
   <button class="run" id="runBtn">▶ Run</button>
+  <button id="themeBtn" title="Toggle dark/light mode">🌙</button>
 </div>
 
 <div class="panes">
@@ -628,4 +629,26 @@ function escapeHtml(s){ return s.replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','
 
 document.getElementById('runBtn').addEventListener('click', compileAndRun);
 syncGutter();
+
+/* manual dark/light toggle, remembered per-viewer (falls back to system theme if storage is unavailable) */
+const themeBtn=document.getElementById('themeBtn');
+function systemPrefersDark(){
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function applyTheme(mode){
+  if(mode==='dark'||mode==='light') document.documentElement.setAttribute('data-theme', mode);
+  else document.documentElement.removeAttribute('data-theme');
+  const isDark = mode==='dark' || (mode!=='light' && systemPrefersDark());
+  themeBtn.textContent = isDark ? '☀️' : '🌙';
+}
+let savedTheme=null;
+try{ savedTheme=localStorage.getItem('mc-theme'); }catch(e){}
+applyTheme(savedTheme);
+themeBtn.addEventListener('click', ()=>{
+  const isDarkNow = document.documentElement.getAttribute('data-theme')==='dark'
+    || (!document.documentElement.getAttribute('data-theme') && systemPrefersDark());
+  const next = isDarkNow ? 'light' : 'dark';
+  applyTheme(next);
+  try{ localStorage.setItem('mc-theme', next); }catch(e){}
+});
 </script>
