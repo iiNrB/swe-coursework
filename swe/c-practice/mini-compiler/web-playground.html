@@ -1,0 +1,561 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Mini C Playground</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* layout: top bar (title/examples/run) + two-pane split (editor | output), stacking on narrow screens */
+:root{
+  --bg:#F5F3EF; --panel:#FFFFFF; --ink:#1C1A17; --muted:#73695C; --line:#E4DED2;
+  --accent:#1F6F5C; --accent-ink:#F4FBF8; --error:#B3261E; --error-bg:#FBEAE8;
+  --gutter:#EDE9E0; --font-ui:'Inter',system-ui,sans-serif; --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --panel:#1D1A15; --ink:#EFEAE1; --muted:#9A907F; --line:#332E25;
+    --accent:#49C9A3; --accent-ink:#0B2420; --error:#FF8A80; --error-bg:#3A1917;
+    --gutter:#211E18; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --panel:#1D1A15; --ink:#EFEAE1; --muted:#9A907F; --line:#332E25;
+  --accent:#49C9A3; --accent-ink:#0B2420; --error:#FF8A80; --error-bg:#3A1917;
+  --gutter:#211E18; color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-ui);
+  margin:0; height:100%;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:16px 20px;
+  display:flex; flex-direction:column; gap:12px;
+}
+html{height:100%}
+.topbar{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.topbar h1{font-size:16px; font-weight:700; margin:0; letter-spacing:-0.01em}
+.topbar .sub{color:var(--muted); font-size:12px}
+.spacer{flex:1}
+select,button{
+  font-family:var(--font-ui); font-size:13px; border-radius:8px; border:1px solid var(--line);
+  background:var(--panel); color:var(--ink); padding:7px 12px; cursor:pointer;
+}
+button.run{background:var(--accent); color:var(--accent-ink); border-color:transparent; font-weight:600}
+button.run:active{transform:translateY(1px)}
+.panes{display:flex; gap:12px; flex:1; min-height:0}
+@media (max-width:760px){.panes{flex-direction:column}}
+.pane{
+  flex:1; min-width:0; background:var(--panel); border:1px solid var(--line); border-radius:10px;
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.pane-label{
+  font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+  padding:8px 12px; border-bottom:1px solid var(--line); flex:none;
+}
+.editor-wrap{flex:1; display:flex; min-height:280px; position:relative; overflow:auto}
+.gutter{
+  flex:none; width:40px; background:var(--gutter); color:var(--muted); font-family:var(--font-mono);
+  font-size:13px; line-height:20px; padding:12px 6px 12px 0; text-align:right; user-select:none;
+  white-space:pre;
+}
+textarea{
+  flex:1; border:none; outline:none; resize:none; background:transparent; color:var(--ink);
+  font-family:var(--font-mono); font-size:13px; line-height:20px; padding:12px 12px 12px 10px;
+  tab-size:4;
+}
+#output{
+  flex:1; overflow:auto; padding:12px; font-family:var(--font-mono); font-size:13px; line-height:1.6;
+  white-space:pre-wrap; min-height:280px;
+}
+.ok-line{color:var(--ink)}
+.err-head{color:var(--error); font-weight:700; margin-bottom:6px}
+.err-row{background:var(--error-bg); color:var(--error); border-radius:6px; padding:6px 8px; margin-bottom:4px}
+.err-row b{font-variant-numeric:tabular-nums}
+.hint{color:var(--muted); font-size:12px; padding:2px 2px 0}
+</style>
+
+<div class="topbar">
+  <h1>Mini C Playground</h1>
+  <span class="sub">your own lexer → parser → interpreter, running right here</span>
+  <div class="spacer"></div>
+  <select id="exampleSelect">
+    <option value="hello">hello.c</option>
+    <option value="math_types">math_types.c</option>
+    <option value="control">control.c</option>
+    <option value="error_demo">error_demo.c (intentionally broken)</option>
+  </select>
+  <button class="run" id="runBtn">▶ Run</button>
+</div>
+
+<div class="panes">
+  <div class="pane">
+    <div class="pane-label">source.c</div>
+    <div class="editor-wrap">
+      <div class="gutter" id="gutter">1</div>
+      <textarea id="code" spellcheck="false"></textarea>
+    </div>
+  </div>
+  <div class="pane">
+    <div class="pane-label">output</div>
+    <div id="output">Press Run to compile and execute.</div>
+  </div>
+</div>
+
+<script>
+const EXAMPLES = {
+  hello: 'printf("Hello from my own compiler!\\n");\n',
+  math_types:
+`int i;
+int j;
+float x;
+
+i = 10;
+j = 3;
+printf("10 %% 3 = %d\\n", i % j);
+
+x = 9 + 2.5f;
+printf("9 + 2.5 = %f\\n", x);
+
+int a;
+a = 1 / 2;
+printf("1 / 2 (int division) = %d\\n", a);
+`,
+  control:
+`int n;
+n = 5;
+
+int i;
+i = 1;
+while (i <= n) {
+    printf("i = %d\\n", i);
+    i = i + 1;
+}
+
+if (n > 3) {
+    printf("n is bigger than 3\\n");
+} else {
+    printf("n is 3 or smaller\\n");
+}
+`,
+  error_demo:
+`int x
+x = 5;
+
+y = 10;
+
+if (x > 3 {
+    printf("x is big\\n");
+}
+
+int z;
+z = 1 +;
+`
+};
+
+/* ---------------- lexer ---------------- */
+const T = {EOF:0,INT:1,FLOAT:2,IF:3,ELSE:4,WHILE:5,PRINTF:6,IDENT:7,NUMBER:8,STRING:9,
+  PLUS:10,MINUS:11,STAR:12,SLASH:13,PERCENT:14,ASSIGN:15,SEMI:16,COMMA:17,
+  LPAREN:18,RPAREN:19,LBRACE:20,RBRACE:21,LT:22,GT:23,LE:24,GE:25,EQ:26,NE:27,
+  AND:28,OR:29,NOT:30,UNKNOWN:31};
+
+function lex(src){
+  let pos=0, line=1;
+  const peek=()=>src[pos]||'';
+  const peek2=()=>src[pos+1]||'';
+  const adv=()=>{ if(src[pos]==='\n') line++; pos++; };
+  function skipWs(){
+    for(;;){
+      const c=peek();
+      if(c===' '||c==='\t'||c==='\r'||c==='\n'){adv();}
+      else if(c==='/'&&peek2()==='/'){ while(peek()&&peek()!=='\n') adv(); }
+      else if(c==='/'&&peek2()==='*'){ adv();adv(); while(peek()&&!(peek()==='*'&&peek2()==='/')) adv(); if(peek()){adv();adv();} }
+      else break;
+    }
+  }
+  const isAlpha=c=>/[A-Za-z_]/.test(c);
+  const isDigit=c=>/[0-9]/.test(c);
+  const isAlnum=c=>/[A-Za-z0-9_]/.test(c);
+  const KW={int:T.INT,float:T.FLOAT,if:T.IF,else:T.ELSE,while:T.WHILE,printf:T.PRINTF};
+
+  return function next(){
+    skipWs();
+    const ln=line;
+    let c=peek();
+    if(!c) return {type:T.EOF,text:'',line:ln};
+    if(isAlpha(c)){
+      let s=pos; while(isAlnum(peek())) adv();
+      const text=src.slice(s,pos);
+      return {type: KW[text]!==undefined?KW[text]:T.IDENT, text, line:ln};
+    }
+    if(isDigit(c)||(c==='.'&&isDigit(peek2()))){
+      let s=pos; while(isDigit(peek())) adv();
+      if(peek()==='.'){ adv(); while(isDigit(peek())) adv(); }
+      if(peek()==='f'||peek()==='F') adv();
+      return {type:T.NUMBER, text:src.slice(s,pos), line:ln};
+    }
+    if(c==='"'){
+      adv(); let out='';
+      while(peek()&&peek()!=='"'){
+        let ch=peek();
+        if(ch==='\\'){
+          adv(); const e=peek();
+          if(e==='n') ch='\n'; else if(e==='t') ch='\t'; else if(e==='\\') ch='\\'; else if(e==='"') ch='"'; else ch=e;
+          adv();
+        } else adv();
+        out+=ch;
+      }
+      if(peek()==='"') adv();
+      return {type:T.STRING, text:out, line:ln};
+    }
+    const one={'+':T.PLUS,'-':T.MINUS,'*':T.STAR,'/':T.SLASH,'%':T.PERCENT,';':T.SEMI,',':T.COMMA,
+      '(':T.LPAREN,')':T.RPAREN,'{':T.LBRACE,'}':T.RBRACE};
+    if(one[c]!==undefined){ adv(); return {type:one[c], text:c, line:ln}; }
+    if(c==='!'){ adv(); if(peek()==='='){adv(); return {type:T.NE,text:'!=',line:ln};} return {type:T.NOT,text:'!',line:ln}; }
+    if(c==='='){ adv(); if(peek()==='='){adv(); return {type:T.EQ,text:'==',line:ln};} return {type:T.ASSIGN,text:'=',line:ln}; }
+    if(c==='<'){ adv(); if(peek()==='='){adv(); return {type:T.LE,text:'<=',line:ln};} return {type:T.LT,text:'<',line:ln}; }
+    if(c==='>'){ adv(); if(peek()==='='){adv(); return {type:T.GE,text:'>=',line:ln};} return {type:T.GT,text:'>',line:ln}; }
+    if(c==='&'&&peek2()==='&'){ adv();adv(); return {type:T.AND,text:'&&',line:ln}; }
+    if(c==='|'&&peek2()==='|'){ adv();adv(); return {type:T.OR,text:'||',line:ln}; }
+    adv();
+    return {type:T.UNKNOWN, text:c, line:ln};
+  };
+}
+
+/* ---------------- parser ---------------- */
+function parse(src){
+  const nextTok=lex(src);
+  let cur=nextTok();
+  const errors=[];
+  function adv(){ cur=nextTok(); }
+  function desc(t){
+    const names={[T.EOF]:'end of file',[T.SEMI]:"';'",[T.RPAREN]:"')'",[T.LPAREN]:"'('",[T.RBRACE]:"'}'",[T.LBRACE]:"'{'"};
+    return names[t.type] || "'"+(t.text||'?')+"'";
+  }
+  function err(line,msg){ errors.push({line,message:msg}); }
+  function sync(){
+    while(cur.type!==T.EOF && cur.type!==T.RBRACE){
+      if(cur.type===T.SEMI){ adv(); return; }
+      adv();
+    }
+  }
+  function expect(type,what){
+    if(cur.type===type){ adv(); return true; }
+    err(cur.line, `expected ${what} but found ${desc(cur)}`);
+    return false;
+  }
+
+  function primary(){
+    const line=cur.line;
+    if(cur.type===T.NUMBER){
+      const isFloat=/[.fF]/.test(cur.text);
+      const node = isFloat
+        ? {kind:'num', isFloat:true, value:parseFloat(cur.text), line}
+        : {kind:'num', isFloat:false, value:parseInt(cur.text,10), line};
+      adv(); return node;
+    }
+    if(cur.type===T.IDENT){ const node={kind:'var', name:cur.text, line}; adv(); return node; }
+    if(cur.type===T.LPAREN){ adv(); const e=expr(); expect(T.RPAREN,"')'"); return e; }
+    err(line, `expected an expression but found ${desc(cur)}`);
+    adv();
+    return {kind:'num', isFloat:false, value:0, line};
+  }
+  function unary(){
+    const line=cur.line;
+    if(cur.type===T.MINUS){ adv(); return {kind:'unop', op:'neg', line, e:unary()}; }
+    if(cur.type===T.PLUS){ adv(); return {kind:'unop', op:'pos', line, e:unary()}; }
+    if(cur.type===T.NOT){ adv(); return {kind:'unop', op:'not', line, e:unary()}; }
+    return primary();
+  }
+  function level(next, pairs){
+    let left=next();
+    for(;;){
+      const hit=pairs.find(p=>p[0]===cur.type);
+      if(!hit) break;
+      const line=cur.line; adv();
+      const right=next();
+      left={kind:'binop', op:hit[1], line, l:left, r:right};
+    }
+    return left;
+  }
+  const term=()=>level(unary, [[T.STAR,'mul'],[T.SLASH,'div'],[T.PERCENT,'mod']]);
+  const additive=()=>level(term, [[T.PLUS,'add'],[T.MINUS,'sub']]);
+  const relational=()=>level(additive, [[T.LT,'lt'],[T.GT,'gt'],[T.LE,'le'],[T.GE,'ge']]);
+  const equality=()=>level(relational, [[T.EQ,'eq'],[T.NE,'ne']]);
+  const logAnd=()=>level(equality, [[T.AND,'and']]);
+  const logOr=()=>level(logAnd, [[T.OR,'or']]);
+  function expr(){ return logOr(); }
+
+  function block(){
+    const line=cur.line;
+    expect(T.LBRACE,"'{'");
+    const body=[];
+    while(cur.type!==T.RBRACE && cur.type!==T.EOF){
+      const s=statement(); if(s) body.push(s);
+    }
+    expect(T.RBRACE,"'}'");
+    return {kind:'block', line, body};
+  }
+  function decl(){
+    const line=cur.line;
+    const ty = cur.type===T.INT ? 'int' : 'float';
+    adv();
+    if(cur.type!==T.IDENT){ err(cur.line, 'expected a variable name after type'); sync(); return null; }
+    const name=cur.text; adv();
+    let init=null;
+    if(cur.type===T.ASSIGN){ adv(); init=expr(); }
+    if(!expect(T.SEMI,"';'")) sync();
+    return {kind:'decl', line, ty, name, init};
+  }
+  function assign(){
+    const line=cur.line;
+    const name=cur.text; adv();
+    if(!expect(T.ASSIGN,"'='")){ sync(); return null; }
+    const value=expr();
+    if(!expect(T.SEMI,"';'")) sync();
+    return {kind:'assign', line, name, value};
+  }
+  function ifStmt(){
+    const line=cur.line; adv();
+    expect(T.LPAREN,"'('");
+    const cond=expr();
+    expect(T.RPAREN,"')'");
+    const then=statement();
+    let els=null;
+    if(cur.type===T.ELSE){ adv(); els=statement(); }
+    return {kind:'if', line, cond, then, els};
+  }
+  function whileStmt(){
+    const line=cur.line; adv();
+    expect(T.LPAREN,"'('");
+    const cond=expr();
+    expect(T.RPAREN,"')'");
+    const body=statement();
+    return {kind:'while', line, cond, body};
+  }
+  function printfStmt(){
+    const line=cur.line; adv();
+    expect(T.LPAREN,"'('");
+    let fmt=null, arg=null;
+    if(cur.type===T.STRING){ fmt=cur.text; adv(); }
+    else err(cur.line, 'expected a format string in printf(...)');
+    if(cur.type===T.COMMA){ adv(); arg=expr(); }
+    expect(T.RPAREN,"')'");
+    if(!expect(T.SEMI,"';'")) sync();
+    return {kind:'printf', line, fmt, arg};
+  }
+  function statement(){
+    switch(cur.type){
+      case T.INT: case T.FLOAT: return decl();
+      case T.IF: return ifStmt();
+      case T.WHILE: return whileStmt();
+      case T.PRINTF: return printfStmt();
+      case T.LBRACE: return block();
+      case T.IDENT: return assign();
+      default: {
+        err(cur.line, `unexpected ${desc(cur)} at the start of a statement`);
+        sync();
+        return null;
+      }
+    }
+  }
+
+  const body=[];
+  while(cur.type!==T.EOF){ const s=statement(); if(s) body.push(s); }
+  return {program:{kind:'block', line:1, body}, errors};
+}
+
+/* ---------------- semantic check + interpreter ---------------- */
+function run(program){
+  const errors=[];
+  const syms={};
+  function err(line,msg){
+    if(!errors.some(e=>e.line===line&&e.message===msg)) errors.push({line,message:msg});
+  }
+  function collect(s){
+    if(!s) return;
+    if(s.kind==='decl'){
+      if(syms[s.name]!==undefined) err(s.line, `variable '${s.name}' is declared more than once`);
+      else syms[s.name]={type:s.ty};
+    } else if(s.kind==='block'){ s.body.forEach(collect); }
+    else if(s.kind==='if'){ collect(s.then); collect(s.els); }
+    else if(s.kind==='while'){ collect(s.body); }
+  }
+  collect(program);
+
+  function typeOf(e){
+    switch(e.kind){
+      case 'num': return e.isFloat?'float':'int';
+      case 'var':
+        if(!syms[e.name]){ err(e.line, `variable '${e.name}' was never declared`); return 'int'; }
+        return syms[e.name].type;
+      case 'unop': return e.op==='not' ? 'int' : typeOf(e.e);
+      case 'binop': {
+        if(['lt','gt','le','ge','eq','ne','and','or'].includes(e.op)) return 'int';
+        const l=typeOf(e.l), r=typeOf(e.r);
+        if(e.op==='mod'){ if(l!=='int'||r!=='int') err(e.line, "the '%' operator requires integer operands"); return 'int'; }
+        return (l==='float'||r==='float') ? 'float' : 'int';
+      }
+    }
+  }
+  function clampInt(n){ return n|0; }
+  function clampFloat(n){ return Math.fround(n); }
+
+  const vars={};
+  for(const n in syms) vars[n] = syms[n].type==='int' ? 0 : 0.0;
+
+  let out='';
+  let divZeroLine=null;
+
+  function evalExpr(e){
+    switch(e.kind){
+      case 'num': return e.isFloat ? clampFloat(e.value) : clampInt(e.value);
+      case 'var': return vars[e.name] ?? 0;
+      case 'unop': {
+        const t=typeOf(e.e);
+        if(e.op==='not'){ const v=evalExpr(e.e); return (v===0)?1:0; }
+        const v=evalExpr(e.e);
+        if(e.op==='pos') return v;
+        return t==='float' ? clampFloat(-v) : clampInt(-v);
+      }
+      case 'binop': {
+        if(e.op==='and'){ const lv=evalExpr(e.l); if(lv===0) return 0; const rv=evalExpr(e.r); return rv!==0?1:0; }
+        if(e.op==='or'){ const lv=evalExpr(e.l); if(lv!==0) return 1; const rv=evalExpr(e.r); return rv!==0?1:0; }
+        const lt=typeOf(e.l), rt=typeOf(e.r);
+        const resultFloat = lt==='float'||rt==='float';
+        const lv=evalExpr(e.l), rv=evalExpr(e.r);
+        if(['lt','gt','le','ge','eq','ne'].includes(e.op)){
+          const cmp = {lt:(a,b)=>a<b, gt:(a,b)=>a>b, le:(a,b)=>a<=b, ge:(a,b)=>a>=b, eq:(a,b)=>a===b, ne:(a,b)=>a!==b}[e.op];
+          return cmp(lv,rv) ? 1 : 0;
+        }
+        if(resultFloat){
+          const a=clampFloat(lv), b=clampFloat(rv);
+          if(e.op==='add') return clampFloat(a+b);
+          if(e.op==='sub') return clampFloat(a-b);
+          if(e.op==='mul') return clampFloat(a*b);
+          if(e.op==='div') return clampFloat(a/b);
+        } else {
+          if(e.op==='add') return clampInt(lv+rv);
+          if(e.op==='sub') return clampInt(lv-rv);
+          if(e.op==='mul') return clampInt(lv*rv);
+          if(e.op==='div' || e.op==='mod'){
+            if(rv===0){ divZeroLine=e.line; throw {divByZero:true}; }
+            const q=Math.trunc(lv/rv);
+            return e.op==='div' ? clampInt(q) : clampInt(lv - q*rv);
+          }
+        }
+      }
+    }
+  }
+  function formatPrintf(fmt, hasArg, value, isFloat){
+    let i=0, done=false;
+    let result='';
+    while(i<fmt.length){
+      if(fmt[i]==='%'&&fmt[i+1]==='%'){ result+='%'; i+=2; continue; }
+      if(!done && fmt[i]==='%' && (fmt[i+1]==='d'||fmt[i+1]==='f')){
+        if(fmt[i+1]==='d') result+=String(Math.trunc(value));
+        else result+=Number(value).toFixed(6);
+        i+=2; done=true; continue;
+      }
+      result+=fmt[i]; i++;
+    }
+    return result;
+  }
+  function execStmt(s){
+    if(!s) return;
+    switch(s.kind){
+      case 'block': s.body.forEach(execStmt); return;
+      case 'decl':
+        if(s.init!=null){
+          let v=evalExpr(s.init);
+          if(s.ty==='float') v=clampFloat(v); else v=clampInt(Math.trunc(v));
+          vars[s.name]=v;
+        }
+        return;
+      case 'assign': {
+        if(!syms[s.name]) return;
+        let v=evalExpr(s.value);
+        v = syms[s.name].type==='float' ? clampFloat(v) : clampInt(Math.trunc(v));
+        vars[s.name]=v;
+        return;
+      }
+      case 'if':
+        if(evalExpr(s.cond)!==0) execStmt(s.then); else execStmt(s.els);
+        return;
+      case 'while': {
+        let guard=0;
+        while(evalExpr(s.cond)!==0){ execStmt(s.body); if(++guard>200000) throw {infiniteLoop:true}; }
+        return;
+      }
+      case 'printf': {
+        if(s.arg==null){ out+=formatPrintf(s.fmt,false,0,false); return; }
+        const t=typeOf(s.arg);
+        const v=evalExpr(s.arg);
+        out+=formatPrintf(s.fmt, true, v, t==='float');
+        return;
+      }
+    }
+  }
+
+  if(errors.length>0) return {errors, out:null};
+
+  try{
+    execStmt(program);
+  } catch(ex){
+    if(ex && ex.divByZero) return {errors:null, out, runtimeError:`division by zero at line ${divZeroLine}`};
+    if(ex && ex.infiniteLoop) return {errors:null, out, runtimeError:'while loop ran too long (possible infinite loop) — stopped'};
+    return {errors:null, out, runtimeError:String(ex)};
+  }
+  return {errors:null, out};
+}
+
+/* ---------------- UI wiring ---------------- */
+const codeEl=document.getElementById('code');
+const gutterEl=document.getElementById('gutter');
+const outEl=document.getElementById('output');
+const exampleSelect=document.getElementById('exampleSelect');
+
+function syncGutter(){
+  const lines=codeEl.value.split('\n').length;
+  let s='';
+  for(let i=1;i<=lines;i++) s+=i+'\n';
+  gutterEl.textContent=s;
+  gutterEl.scrollTop=codeEl.scrollTop;
+}
+codeEl.addEventListener('input', syncGutter);
+codeEl.addEventListener('scroll', ()=>{ gutterEl.scrollTop=codeEl.scrollTop; });
+
+function loadExample(key){
+  codeEl.value=EXAMPLES[key];
+  syncGutter();
+}
+exampleSelect.addEventListener('change', e=>loadExample(e.target.value));
+loadExample('hello');
+
+function compileAndRun(){
+  const src=codeEl.value;
+  const {program, errors:parseErrors}=parse(src);
+  if(parseErrors.length>0){
+    parseErrors.sort((a,b)=>a.line-b.line);
+    renderErrors(parseErrors, `${parseErrors.length} syntax error${parseErrors.length>1?'s':''} found`);
+    return;
+  }
+  const result=run(program);
+  if(result.errors && result.errors.length>0){
+    result.errors.sort((a,b)=>a.line-b.line);
+    renderErrors(result.errors, `${result.errors.length} error${result.errors.length>1?'s':''} found`);
+    return;
+  }
+  if(result.runtimeError){
+    outEl.innerHTML = (result.out?escapeHtml(result.out):'') + `\n<span class="err-row">Runtime error: ${escapeHtml(result.runtimeError)}</span>`;
+    return;
+  }
+  outEl.textContent = result.out.length ? result.out : '(program produced no output)';
+}
+function renderErrors(list, headline){
+  let html=`<div class="err-head">${escapeHtml(headline)}</div>`;
+  for(const e of list) html+=`<div class="err-row"><b>Line ${e.line}:</b> ${escapeHtml(e.message)}</div>`;
+  outEl.innerHTML=html;
+}
+function escapeHtml(s){ return s.replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+document.getElementById('runBtn').addEventListener('click', compileAndRun);
+syncGutter();
+</script>
