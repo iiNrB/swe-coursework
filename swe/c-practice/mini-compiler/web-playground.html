@@ -359,7 +359,19 @@ function parse(src){
   }
 
   const body=[];
-  while(cur.type!==T.EOF){ const s=statement(); if(s) body.push(s); }
+  let guard=0;
+  while(cur.type!==T.EOF){
+    const beforeType=cur.type, beforeLine=cur.line;
+    const s=statement();
+    if(s) body.push(s);
+    if(cur.type===beforeType && cur.line===beforeLine && cur.type!==T.EOF){
+      /* a stray '}' at top level: sync() correctly refuses to eat a closer
+         meant for an enclosing block, but there is no enclosing block here,
+         so force one token of progress or this loops forever */
+      adv();
+    }
+    if(++guard>100000){ err(cur.line, 'parser stuck (this is a playground bug) — stopping'); break; }
+  }
   return {program:{kind:'block', line:1, body}, errors};
 }
 

@@ -279,10 +279,18 @@ Stmt *parser_parse_program(Parser *p) {
     Stmt **items = NULL;
     int count = 0, cap = 0;
     while (p->cur.type != T_EOF) {
+        TokenType before_type = p->cur.type;
+        int before_line = p->cur.line;
         Stmt *s = parse_statement(p);
         if (s) {
             if (count == cap) { cap = cap ? cap * 2 : 16; items = realloc(items, cap * sizeof(Stmt *)); }
             items[count++] = s;
+        }
+        if (p->cur.type == before_type && p->cur.line == before_line && p->cur.type != T_EOF) {
+            /* a stray '}' at top level: synchronize() correctly refuses to eat
+               a closer meant for an enclosing block, but there is no enclosing
+               block here, so force one token of progress or this loops forever */
+            advance(p);
         }
     }
     prog->body = items;
