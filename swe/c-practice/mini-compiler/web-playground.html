@@ -601,24 +601,28 @@ exampleSelect.addEventListener('change', e=>loadExample(e.target.value));
 loadExample('hello');
 
 function compileAndRun(){
-  const src=codeEl.value;
-  const {program, errors:parseErrors}=parse(src);
-  if(parseErrors.length>0){
-    parseErrors.sort((a,b)=>a.line-b.line);
-    renderErrors(parseErrors, `${parseErrors.length} syntax error${parseErrors.length>1?'s':''} found`);
-    return;
+  try{
+    const src=codeEl.value;
+    const {program, errors:parseErrors}=parse(src);
+    if(parseErrors.length>0){
+      parseErrors.sort((a,b)=>a.line-b.line);
+      renderErrors(parseErrors, `${parseErrors.length} syntax error${parseErrors.length>1?'s':''} found`);
+      return;
+    }
+    const result=run(program);
+    if(result.errors && result.errors.length>0){
+      result.errors.sort((a,b)=>a.line-b.line);
+      renderErrors(result.errors, `${result.errors.length} error${result.errors.length>1?'s':''} found`);
+      return;
+    }
+    if(result.runtimeError){
+      outEl.innerHTML = (result.out?escapeHtml(result.out):'') + `\n<span class="err-row">Runtime error: ${escapeHtml(result.runtimeError)}</span>`;
+      return;
+    }
+    outEl.textContent = result.out.length ? result.out : '(program produced no output)';
+  }catch(ex){
+    outEl.innerHTML = `<span class="err-row">Internal error — this is a bug in the playground itself, not your code: ${escapeHtml(String(ex && ex.message || ex))}</span>`;
   }
-  const result=run(program);
-  if(result.errors && result.errors.length>0){
-    result.errors.sort((a,b)=>a.line-b.line);
-    renderErrors(result.errors, `${result.errors.length} error${result.errors.length>1?'s':''} found`);
-    return;
-  }
-  if(result.runtimeError){
-    outEl.innerHTML = (result.out?escapeHtml(result.out):'') + `\n<span class="err-row">Runtime error: ${escapeHtml(result.runtimeError)}</span>`;
-    return;
-  }
-  outEl.textContent = result.out.length ? result.out : '(program produced no output)';
 }
 function renderErrors(list, headline){
   let html=`<div class="err-head">${escapeHtml(headline)}</div>`;
