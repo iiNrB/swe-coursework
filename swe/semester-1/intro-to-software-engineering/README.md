@@ -24,4 +24,4 @@ Engineering: A Practitioner's Approach (R.S. Pressman & B.R. Maxim, 9th ed.).
 - [Books](books/) — Computer Fundamentals (Anita Goel)
 - [Exam Questions](exam-questions/) — [Mid-term](exam-questions/mid-term.pdf) · [Final](exam-questions/final.pdf)
 - [Syllabus, Routine & Notices](syllabus-routine-notice.md)
-- [Notes](notes/) — formatted per [note-format.md](../../templates/note-format.md)
+- [Notes](notes/) — formatted per [note-format.md](../../templates/note-format.md); also Bangla slide-by-slide notes for [Lec 3](notes/Lec3-slide-notes-part1.pdf) ([P2](notes/Lec3-slide-notes-part2.pdf)) and [Lec 4](notes/Lec4-slide-notes-part1.pdf) ([P2](notes/Lec4-slide-notes-part2.pdf)), odd/even page split for duplex printing
