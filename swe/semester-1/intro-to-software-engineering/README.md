@@ -7,9 +7,11 @@ Computer Fundamentals (P.K. Sinha & P. Sinha, 8th ed.), Software
 Engineering: A Practitioner's Approach (R.S. Pressman & B.R. Maxim, 9th ed.).
 
 - [Cover Page](cover-page.pdf) — printable A4 notebook cover, color-coded
-- [Lecture Slides](slides/) — Lec 1: course intro, computer fundamentals, data vs info, generations/types of computers; Lec 2: hardware components and peripherals
+- [Lecture Slides](slides/) — Lec 1: course intro, computer fundamentals, data vs info, generations/types of computers; Lec 2: hardware components and peripherals; Lec 3: number system and logic gates; Lec 4: computer architecture and software concepts
   - [Lec 1 Print Handout — Part 1](slides/handouts/Lec1-handout-part1.pdf) · [Part 2](slides/handouts/Lec1-handout-part2.pdf) — 3 slides/page with note space, split for double-sided printing (Part 1 slides 1-3/7-9/…, Part 2 slides 4-6/10-12/… align back-to-back)
   - [Lec 2 Print Handout — Part 1](slides/handouts/Lec2-handout-part1.pdf) · [Part 2](slides/handouts/Lec2-handout-part2.pdf) — same format
+  - [Lec 3 Print Handout — Part 1](slides/handouts/Lec3-handout-part1.pdf) · [Part 2](slides/handouts/Lec3-handout-part2.pdf) — same format
+  - [Lec 4 Print Handout — Part 1](slides/handouts/Lec4-handout-part1.pdf) · [Part 2](slides/handouts/Lec4-handout-part2.pdf) — same format
   - Also uploaded (reference slides, all with the same Part 1/Part 2 print handouts now):
     [Lecture 1 2024](slides/Lecture-1-2024.pdf) ([P1](slides/handouts/Lecture-1-2024-handout-part1.pdf)/[P2](slides/handouts/Lecture-1-2024-handout-part2.pdf)) ·
     [Program Execution Basics](slides/Lecture-2.1-Program-Execution-Basics.pdf) ([P1](slides/handouts/Lecture-2.1-Program-Execution-Basics-handout-part1.pdf)/[P2](slides/handouts/Lecture-2.1-Program-Execution-Basics-handout-part2.pdf)) ·

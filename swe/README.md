@@ -26,6 +26,8 @@ course has every folder — only what's actually been provided):
 
 ## Reference
 
+- [Templates](templates/) — [note-format.md](templates/note-format.md), handout layout demos, and a blank
+  [assignment cover page](templates/assignment-cover.pdf) (IUT CSE/SWE, fillable) for any course's assignments
 - [Academic Catalogue — CSE, IUT (2017–18 onwards)](academic-catalogue-cse-2017-18.pdf) —
   official department catalogue with the full course structure and
   detailed course descriptions (objectives, contents, recommended texts)
