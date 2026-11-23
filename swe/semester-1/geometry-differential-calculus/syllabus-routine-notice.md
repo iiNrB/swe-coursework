@@ -41,6 +41,28 @@ Envelopes, Curve tracing.
 
 Source: [Academic Catalogue — CSE, IUT](../../academic-catalogue-cse-2017-18.pdf), p. 32
 
+Full official OBE course plan for this semester (weekly schedule, grading
+policy, CO/PO mapping): [course-outline.pdf](course-outline.pdf)
+
+**Assessment:** Attendance 10% (min. 70% required for final exam
+eligibility) · Quiz (best 4 of 4, weeks 4/8/11/14) + 1 Assignment, 30%
+combined · Mid Semester 30% · Semester Final 30%.
+
+**Weekly plan (14 weeks):** Wk1 transformation of coordinates · Wk2–3
+homogeneous 2nd-degree equations, pair of lines (HW I) · Wk4 pair of lines
+through curve–line intersection, circles (Test I) · Wk5 limits,
+continuity, differentiability · Wk6 derivatives, Leibnitz's/Rolle's/MVT
+(HW II) · Wk7 L'Hospital's rule (Test II) · Mid-semester exam · Wk8
+tangent/extrema, partial differentiation, Euler's theorem · Wk9 Taylor's/
+Maclaurin's theorems (HW III) · Wk10 expansion of functions (Test III) ·
+Wk11 curvature, evolutes, asymptotes · Wk12 3D: direction cosines ·
+Wk13 planes, sphere (Test IV) · Wk14 conicoids, cones, cylinders, review.
+
+**Teacher:** Dr. Md. Tusher Mollah (Assistant Professor, Mathematics,
+Dept. of NSc, IUT). Email: tusher@iut-dhaka.edu · Tel: +8801828-017666.
+Consulting hours: Wed & Thu, 12:40–14:30 (as printed in the outline;
+likely meant as 12:40 p.m.–2:30 p.m., worth confirming).
+
 ## Class Routine
 Wed, Periods 3–4 (100 min) · Room R-510 · Teacher MTM (NSc)
 Fri, Periods 1–2 (100 min) · Room R-105 (AB3) · Teacher MTM (NSc)
