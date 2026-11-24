@@ -12,4 +12,4 @@ Course Code: Math 4141 · Credit: 4.00 · Color: 🔵 `#1565C0` (see [colors.md]
 - [Exam Questions](exam-questions/) — [Mid-term](exam-questions/mid-term.pdf) · [Final](exam-questions/final.pdf)
 - [Syllabus, Routine & Notices](syllabus-routine-notice.md)
 - [Notes](notes/) — formatted per [note-format.md](../../templates/note-format.md)
-  - Worked solutions (Bangla): [Lecture 1, 3, 4](notes/2026-11-24-worked-solutions-lecture1-3-4-bangla.pdf) · [Lecture 2](notes/2026-11-24-worked-solutions-lecture2-bangla.pdf) · [Pair of straight lines condition, with graphs](notes/2026-11-24-pair-of-straight-lines-condition-bangla.pdf) ([1 page](notes/2026-11-24-pair-of-straight-lines-condition-1page-bangla.pdf))
+  - Worked solutions (Bangla): [Lecture 1, 3, 4](notes/2026-11-24-worked-solutions-lecture1-3-4-bangla.pdf) · [Lecture 2](notes/2026-11-24-worked-solutions-lecture2-bangla.pdf) · [Pair of straight lines condition, with graphs](notes/2026-11-24-pair-of-straight-lines-condition-bangla.pdf) ([1 page](notes/2026-11-24-pair-of-straight-lines-condition-1page-bangla.pdf)) · [Lecture 3, one page per problem with graphs](notes/2026-11-24-lecture3-graph-explained-bangla.pdf)
