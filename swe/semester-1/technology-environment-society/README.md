@@ -18,6 +18,8 @@ Course Code: Hum 4147 · Credit: 3.00 · Color: 🟤 `#6D4C41` (see [colors.md](
   - [Ozone Layer Depletion](slides/Ozone-Layer-Depletion.pdf) ([P1](slides/handouts/Ozone-Layer-Depletion-handout-part1.pdf)/[P2](slides/handouts/Ozone-Layer-Depletion-handout-part2.pdf))
   - [Environmental Health](slides/Environmental-Health.pdf) ([P1](slides/handouts/Environmental-Health-handout-part1.pdf)/[P2](slides/handouts/Environmental-Health-handout-part2.pdf))
   - [Industrial Hazards and Safety](slides/Industrial-Hazards-and-Safety.pdf) ([P1](slides/handouts/Industrial-Hazards-and-Safety-handout-part1.pdf)/[P2](slides/handouts/Industrial-Hazards-and-Safety-handout-part2.pdf))
+  - [Biodiversity](slides/Biodiversity.pdf) ([P1](slides/handouts/Biodiversity-handout-part1.pdf)/[P2](slides/handouts/Biodiversity-handout-part2.pdf)) — from the current Google Classroom
+  - [Acid Rain](slides/Acid-Rain.pdf) ([P1](slides/handouts/Acid-Rain-handout-part1.pdf)/[P2](slides/handouts/Acid-Rain-handout-part2.pdf)) — from the current Google Classroom
 - [Books](books/) — Principles of Environmental Science and Technology (Saravanan/Ramachandran/Baskar) · Principles of Environmental Sciences (Bertels/Bezemer)
 - [Readings](readings/) — supplementary articles: society & environment, ecosystem structure/restoration, carrying capacity, green technology, seven theories of climate change, greenhouse gas emissions, ecological footprint of cities
 - [Exam Questions](exam-questions/) — [Mid-term](exam-questions/mid-term.pdf) · [Final](exam-questions/final.pdf)
