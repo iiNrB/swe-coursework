@@ -12,4 +12,4 @@ Course Code: Math 4141 · Credit: 4.00 · Color: 🔵 `#1565C0` (see [colors.md]
 - [Exam Questions](exam-questions/) — [Mid-term](exam-questions/mid-term.pdf) · [Final](exam-questions/final.pdf)
 - [Syllabus, Routine & Notices](syllabus-routine-notice.md)
 - [Notes](notes/) — formatted per [note-format.md](../../templates/note-format.md)
-  - [Worked solutions, Lecture 1, 3, 4 (Bangla)](notes/2026-11-24-worked-solutions-lecture1-3-4-bangla.pdf)
+  - Worked solutions (Bangla): [Lecture 1, 3, 4](notes/2026-11-24-worked-solutions-lecture1-3-4-bangla.pdf) · [Lecture 2](notes/2026-11-24-worked-solutions-lecture2-bangla.pdf)
