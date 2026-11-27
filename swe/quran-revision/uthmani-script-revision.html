@@ -50,13 +50,14 @@ h2{font-family:var(--font-display); font-size:22px; font-weight:700; margin:0 0 
 .section-note{color:var(--muted); font-size:13.5px; line-height:1.6; max-width:68ch; margin:0 0 20px}
 
 /* Letter grid */
-.letter-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px}
+.letter-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(172px,1fr)); gap:10px}
 .letter-card{
   background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:10px 12px;
 }
-.letter-card .top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px}
-.letter-card .name{font-size:11.5px; color:var(--muted); font-weight:600}
-.letter-card .nc{font-size:9px; color:var(--gold); font-weight:700}
+.letter-card .top{display:flex; justify-content:space-between; align-items:flex-start; gap:6px; margin-bottom:6px}
+.letter-card .name{font-size:11.5px; color:var(--muted); font-weight:600; line-height:1.4}
+.letter-card .name .bn{font-size:12px; color:var(--ink); font-weight:600}
+.letter-card .nc{font-size:9px; color:var(--gold); font-weight:700; flex:none; padding-top:1px}
 .letter-card .forms{display:grid; grid-template-columns:repeat(4,1fr); gap:4px; text-align:center}
 .letter-card .forms div{font-size:9px; color:var(--muted); margin-bottom:2px}
 .letter-card .forms .g{font-family:var(--font-arabic); font-size:22px; direction:rtl; line-height:1.3}
@@ -221,24 +222,24 @@ footer a{color:var(--accent)}
 <script>
 (function(){
   var letters = [
-    ["Alif","ا",true], ["Ba","ب"], ["Ta","ت"], ["Tha","ث"], ["Jim","ج"],
-    ["Ha (heavy)","ح"], ["Kha","خ"], ["Dal","د",true], ["Dhal","ذ",true], ["Ra","ر",true],
-    ["Zay","ز",true], ["Sin","س"], ["Shin","ش"], ["Sad","ص"], ["Dad","ض"],
-    ["Ta (heavy)","ط"], ["Za (heavy)","ظ"], ["Ayn","ع"], ["Ghayn","غ"], ["Fa","ف"],
-    ["Qaf","ق"], ["Kaf","ك"], ["Lam","ل"], ["Mim","م"], ["Nun","ن"],
-    ["Waw","و",true], ["Ha (light)","ه"], ["Ya","ي"]
+    ["Alif","আলিফ","ا",true], ["Ba","বা","ب"], ["Ta","তা","ت"], ["Tha","ছা","ث"], ["Jim","জীম","ج"],
+    ["Ha (heavy)","হা","ح"], ["Kha","খা","خ"], ["Dal","দাল","د",true], ["Dhal","যাল","ذ",true], ["Ra","রা","ر",true],
+    ["Zay","যা","ز",true], ["Sin","সীন","س"], ["Shin","শীন","ش"], ["Sad","সোয়াদ","ص"], ["Dad","দোয়াদ","ض"],
+    ["Ta (heavy)","ত্বোয়া","ط"], ["Za (heavy)","জোয়া","ظ"], ["Ayn","আইন","ع"], ["Ghayn","গাইন","غ"], ["Fa","ফা","ف"],
+    ["Qaf","ক্বাফ","ق"], ["Kaf","কাফ","ك"], ["Lam","লাম","ل"], ["Mim","মীম","م"], ["Nun","নূন","ن"],
+    ["Waw","ওয়াও","و",true], ["Ha (light)","হা","ه"], ["Ya","ইয়া","ي"]
   ];
   var T = "ـ"; // tatweel, forces contextual joining shapes
   var grid = document.getElementById('letterGrid');
   letters.forEach(function(l){
-    var name = l[0], ch = l[1], nc = l[2];
+    var name = l[0], bn = l[1], ch = l[2], nc = l[3];
     var card = document.createElement('div');
     card.className = 'letter-card';
     var initial = nc ? ch : ch + T;
     var medial  = nc ? ch : T + ch + T;
     var final_  = T + ch;
     card.innerHTML =
-      '<div class="top"><span class="name">'+name+'</span>' + (nc ? '<span class="nc">NC</span>' : '') + '</div>' +
+      '<div class="top"><span class="name">'+name+' <span class="bn">· '+bn+'</span></span>' + (nc ? '<span class="nc">NC</span>' : '') + '</div>' +
       '<div class="forms">' +
         '<div>Alone<div class="g">'+ch+'</div></div>' +
         '<div>Start<div class="g">'+initial+'</div></div>' +
