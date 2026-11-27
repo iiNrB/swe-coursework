@@ -93,6 +93,27 @@ h2{font-family:var(--font-display); font-size:22px; font-weight:700; margin:0 0 
 .practice-table .note{color:var(--muted); font-size:12px}
 .scroll-x{overflow-x:auto}
 
+/* Surah / Hadith context blocks */
+.surah-block{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin-bottom:16px}
+.surah-block .sb-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--line)}
+.surah-block .sb-head h3{font-size:16px; margin:0}
+.surah-block .sb-head span{font-family:var(--font-mono); font-size:10.5px; color:var(--muted); letter-spacing:.04em}
+.ayah{display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px dashed var(--line)}
+.ayah:last-child{border-bottom:none}
+.ayah .num{
+  font-family:var(--font-mono); font-size:11px; color:var(--accent); background:var(--accent-soft);
+  width:22px; height:22px; border-radius:999px; display:flex; align-items:center; justify-content:center; flex:none; margin-top:4px;
+}
+.ayah .body{flex:1; min-width:0}
+.ayah .txt{font-family:var(--font-arabic); direction:rtl; font-size:22px; line-height:2.1}
+.ayah .note{font-size:11.5px; color:var(--gold); margin-top:4px; line-height:1.5}
+.hadith-block{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px 22px}
+.hadith-block .isnad{font-size:12px; color:var(--muted); margin:0 0 10px}
+.hadith-block .matn{font-family:var(--font-arabic); direction:rtl; font-size:21px; line-height:2.2; margin:0 0 12px}
+.hadith-block .translit{font-size:12.5px; color:var(--muted); font-style:italic; margin:0 0 6px; line-height:1.6}
+.hadith-block .meaning{font-size:13px; margin:0; line-height:1.6}
+.hadith-block .src{font-family:var(--font-mono); font-size:10.5px; color:var(--muted); margin-top:10px; letter-spacing:.03em}
+
 .callout{
   background:var(--gold-soft); border:1px solid var(--line); border-radius:10px; padding:16px 18px;
   font-size:13.5px; line-height:1.6; margin-top:18px;
@@ -198,6 +219,42 @@ footer a{color:var(--accent)}
           <tr><td class="word">لَّـٰكِنَّ</td><td>laakinna</td><td class="note">Dagger alif plus shaddah — "but, indeed"</td></tr>
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Read it in context — a real Surah</h2>
+    <p class="section-note">Al-Fatiha, the Surah you already read in every rak'ah, shown fully in Uthmani script. Every Uthmani feature from the comparison above shows up in this one Surah — that's the point: it's not new text, just familiar text marked a bit differently.</p>
+
+    <div class="surah-block">
+      <div class="sb-head"><h3>سُورَةُ ٱلْفَاتِحَة — Al-Fatiha</h3><span>7 ayat · Makkiyyah</span></div>
+      <div class="ayah"><div class="num">1</div><div class="body"><div class="txt">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div><div class="note">ٱللَّهِ, ٱلرَّحْمَٰنِ — hamzat-ul-wasl, then a dagger alif in ar-Rahmaan</div></div></div>
+      <div class="ayah"><div class="num">2</div><div class="body"><div class="txt">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ</div><div class="note">ٱلْحَمْدُ — hamzat-ul-wasl; ٱلْعَٰلَمِينَ — dagger alif in "al-'aalameen"</div></div></div>
+      <div class="ayah"><div class="num">3</div><div class="body"><div class="txt">ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div><div class="note">Same ar-Rahmaan pattern as ayah 1</div></div></div>
+      <div class="ayah"><div class="num">4</div><div class="body"><div class="txt">مَٰلِكِ يَوْمِ ٱلدِّينِ</div><div class="note">مَٰلِكِ — dagger alif in "maaliki"; ٱلدِّينِ — hamzat-ul-wasl</div></div></div>
+      <div class="ayah"><div class="num">5</div><div class="body"><div class="txt">إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ</div><div class="note">No new marks here — a good line to confirm you're not just sounding it out but actually reading the page</div></div></div>
+      <div class="ayah"><div class="num">6</div><div class="body"><div class="txt">ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ</div><div class="note">ٱهْدِنَا, ٱلْمُسْتَقِيمَ — hamzat-ul-wasl twice; ٱلصِّرَٰطَ — dagger alif in "siraat"</div></div></div>
+      <div class="ayah"><div class="num">7</div><div class="body"><div class="txt">صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ</div><div class="note">صِرَٰطَ — dagger alif again; أَنْعَمْتَ — a real hamza (not wasl) on alif, marked exactly like you'd expect; ٱلضَّآلِّينَ — hamza-over-alif-with-madd in "adh-dhaalleen"</div></div></div>
+    </div>
+
+    <div class="surah-block">
+      <div class="sb-head"><h3>سُورَةُ ٱلْإِخْلَاص — Al-Ikhlas</h3><span>4 ayat · Makkiyyah</span></div>
+      <div class="ayah"><div class="num">1</div><div class="body"><div class="txt">قُلْ هُوَ ٱللَّهُ أَحَدٌ</div><div class="note">ٱللَّهُ — hamzat-ul-wasl, same as in Al-Fatiha</div></div></div>
+      <div class="ayah"><div class="num">2</div><div class="body"><div class="txt">ٱللَّهُ ٱلصَّمَدُ</div><div class="note">Both words open with the same hamzat-ul-wasl mark</div></div></div>
+      <div class="ayah"><div class="num">3</div><div class="body"><div class="txt">لَمْ يَلِدْ وَلَمْ يُولَدْ</div><div class="note">No special marks — plain reading</div></div></div>
+      <div class="ayah"><div class="num">4</div><div class="body"><div class="txt">وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌ</div><div class="note">لَّهُۥ — a small waw above the letter marks a silent "his" ending, a detail some Indo-Pak prints simplify away</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Read it in context — a Hadith</h2>
+    <p class="section-note">One important distinction: Rasm Uthmani is a Quran-only convention. Hadith collections are printed in ordinary modern Arabic spelling (imla'i), not Uthmani script — so this isn't "another script to learn," it's just plain Arabic reading practice using the same letters and harakat you just revised.</p>
+    <div class="hadith-block">
+      <p class="isnad">The opening of the Hadith of Intentions — the first hadith in Imam Nawawi's Al-Arba'in, and in Sahih al-Bukhari and Sahih Muslim.</p>
+      <p class="matn">عَنْ عُمَرَ بْنِ ٱلْخَطَّابِ رَضِيَ ٱللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ ٱللَّهِ ﷺ يَقُولُ: «إِنَّمَا ٱلْأَعْمَالُ بِٱلنِّيَّاتِ، وَإِنَّمَا لِكُلِّ ٱمْرِئٍ مَا نَوَى»</p>
+      <p class="translit">'An 'Umara bni-l-Khattaab radiyallahu 'anhu qaal: sami'tu Rasulallahi sallallahu 'alayhi wasallam yaquul: "Innamal a'maalu bin-niyyaat, wa innamaa likulli-mri'in maa nawaa."</p>
+      <p class="meaning">"Actions are judged by intentions, and every person will get what they intended."</p>
+      <p class="src">Bukhari 1, Muslim 1907</p>
     </div>
   </section>
 
