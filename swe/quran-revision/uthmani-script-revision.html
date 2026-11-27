@@ -1,0 +1,251 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Qaida to Uthmani Script</title>
+<style>
+/* Layout: single-column scrolling reference — hero, letter-form revision grid, harakat cards, path confirmation, Indo-Pak/Uthmani comparison, practice words */
+:root{
+  --bg:#FAF7F0; --surface:#FFFFFF; --ink:#241F18; --muted:#6B6150; --line:#E2D9C6;
+  --accent:#0E6B5C; --accent-soft:#E3EFEC; --gold:#9C7A24; --gold-soft:#F3ECD9;
+  --font-display:'Amiri',serif; --font-arabic:'Amiri',serif; --font-body:'Inter',system-ui,sans-serif; --font-mono:'JetBrains Mono',monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130F; --surface:#1D1A14; --ink:#F0EBDE; --muted:#A79A80; --line:#332C20;
+    --accent:#4FB89F; --accent-soft:#1B2B27; --gold:#D4AF5A; --gold-soft:#2B2414;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130F; --surface:#1D1A14; --ink:#F0EBDE; --muted:#A79A80; --line:#332C20;
+  --accent:#4FB89F; --accent-soft:#1B2B27; --gold:#D4AF5A; --gold-soft:#2B2414;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;600&family=JetBrains+Mono:wght@500;600&display=swap');
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:28px 48px;
+}
+.wrap{max-width:860px; margin:0 auto}
+.bn{font-family:'Noto Sans Bengali','Inter',sans-serif}
+.ar{font-family:var(--font-arabic); direction:rtl; unicode-bidi:isolate}
+
+header.hero{margin-bottom:28px}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 8px}
+h1{font-family:var(--font-display); font-weight:700; font-size:clamp(26px,5vw,38px); margin:0 0 10px; text-wrap:balance}
+.lede{color:var(--muted); font-size:15px; line-height:1.65; max-width:65ch; margin:0}
+
+.path{
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:20px;
+  background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 16px;
+}
+.path .step{display:flex; flex-direction:column; gap:2px}
+.path .step b{font-size:14px}
+.path .step span{font-size:11.5px; color:var(--muted)}
+.path .arrow{color:var(--muted); font-size:18px; padding:0 2px}
+
+section{margin-top:44px}
+h2{font-family:var(--font-display); font-size:22px; font-weight:700; margin:0 0 6px; text-wrap:balance}
+.section-note{color:var(--muted); font-size:13.5px; line-height:1.6; max-width:68ch; margin:0 0 20px}
+
+/* Letter grid */
+.letter-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px}
+.letter-card{
+  background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:10px 12px;
+}
+.letter-card .top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px}
+.letter-card .name{font-size:11.5px; color:var(--muted); font-weight:600}
+.letter-card .nc{font-size:9px; color:var(--gold); font-weight:700}
+.letter-card .forms{display:grid; grid-template-columns:repeat(4,1fr); gap:4px; text-align:center}
+.letter-card .forms div{font-size:9px; color:var(--muted); margin-bottom:2px}
+.letter-card .forms .g{font-family:var(--font-arabic); font-size:22px; direction:rtl; line-height:1.3}
+
+/* Harakat cards */
+.harakat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px}
+.hk-card{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 16px}
+.hk-card .glyph{font-family:var(--font-arabic); font-size:30px; margin-bottom:6px}
+.hk-card h3{font-size:14px; margin:0 0 4px}
+.hk-card p{font-size:12.5px; color:var(--muted); margin:0; line-height:1.55}
+
+/* Comparison */
+.compare{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media (max-width:640px){ .compare{grid-template-columns:1fr} }
+.compare-col{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px; min-width:0}
+.compare-col.indopak{border-top:4px solid var(--accent)}
+.compare-col.uthmani{border-top:4px solid var(--gold)}
+.compare-col h3{font-size:15px; margin:0 0 4px}
+.compare-col .tag{font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.compare-col ul{margin:14px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px}
+.compare-col li{font-size:13px; line-height:1.55; border-bottom:1px dashed var(--line); padding-bottom:12px}
+.compare-col li:last-child{border-bottom:none; padding-bottom:0}
+.compare-col .ex{font-family:var(--font-arabic); direction:rtl; font-size:19px; display:block; margin:4px 0}
+
+/* Practice words table */
+.practice-table{width:100%; border-collapse:collapse; font-size:13px}
+.practice-table th{
+  text-align:left; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+  font-weight:600; padding:0 10px 8px; border-bottom:1.5px solid var(--line);
+}
+.practice-table td{padding:12px 10px; border-bottom:1px solid var(--line); vertical-align:middle}
+.practice-table .word{font-family:var(--font-arabic); font-size:24px; direction:rtl}
+.practice-table .note{color:var(--muted); font-size:12px}
+.scroll-x{overflow-x:auto}
+
+.callout{
+  background:var(--gold-soft); border:1px solid var(--line); border-radius:10px; padding:16px 18px;
+  font-size:13.5px; line-height:1.6; margin-top:18px;
+}
+.callout b{color:var(--gold)}
+
+.steps{display:flex; flex-direction:column; gap:10px; margin-top:16px}
+.step-row{display:flex; gap:12px; align-items:flex-start}
+.step-row .n{
+  font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--accent);
+  background:var(--accent-soft); width:26px; height:26px; border-radius:999px;
+  display:flex; align-items:center; justify-content:center; flex:none;
+}
+.step-row p{margin:0; font-size:13.5px; line-height:1.55; padding-top:3px}
+
+footer{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); font-size:11.5px; color:var(--muted); line-height:1.7}
+footer a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Qaida revision · script transition</p>
+    <h1>From Qaida to Uthmani Script</h1>
+    <p class="lede">A revision of what you already know from Qaida and Ampara, plus exactly what's different about the Uthmani (Madani) script Mushaf — so you can carry your existing reading straight into it.</p>
+
+    <div class="path">
+      <div class="step"><b>Qaida</b><span>letters, joining, harakat</span></div>
+      <span class="arrow">→</span>
+      <div class="step"><b class="bn">আমপারা</b><span>Juz Amma, short surahs</span></div>
+      <span class="arrow">→</span>
+      <div class="step"><b>Indo-Pak Mushaf</b><span>what you learned to read</span></div>
+      <span class="arrow">→</span>
+      <div class="step"><b>Uthmani Mushaf</b><span>goal: read this directly</span></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>This is how Bangladesh actually teaches it</h2>
+    <p class="section-note">You remembered correctly. Qaida (letter recognition and joining) followed by Ampara (Juz Amma, practiced in short surahs) is the standard route across Bangladesh, India, Pakistan and Indonesia. The Mushaf used at that stage is printed in <b>Indo-Pak script</b> — the regional style, not the Uthmani/Madani style used in the Gulf and increasingly worldwide. The alphabet, the joining rules, the makhraj (articulation points) and the tajweed rules you learned are <em>identical</em> in both — nothing there needs relearning. What differs is a handful of conventions in how the text is marked and printed. That's the actual gap to close, and it's much smaller than starting over.</p>
+  </section>
+
+  <section>
+    <h2>Qaida quick revision — the 28 letters</h2>
+    <p class="section-note">Each card shows how the letter looks alone, then joined at the start, middle and end of a word (the dash marks the connection point). Letters marked <span class="nc">NC</span> don't connect to the letter after them, even mid-word — you already know this from Qaida, this is just to jog it back.</p>
+    <div class="letter-grid" id="letterGrid"></div>
+  </section>
+
+  <section>
+    <h2>Harakat and marks revision</h2>
+    <p class="section-note">The vowel signs and marks that turn letters into recitation — same in every script.</p>
+    <div class="harakat-grid">
+      <div class="hk-card"><div class="glyph ar">بَ</div><h3>Fatha — short "a"</h3><p>A small diagonal stroke above the letter.</p></div>
+      <div class="hk-card"><div class="glyph ar">بِ</div><h3>Kasra — short "i"</h3><p>The same stroke, below the letter.</p></div>
+      <div class="hk-card"><div class="glyph ar">بُ</div><h3>Damma — short "u"</h3><p>A small loop above the letter.</p></div>
+      <div class="hk-card"><div class="glyph ar">بْ</div><h3>Sukun — no vowel</h3><p>A small circle; the letter is pronounced with no vowel sound.</p></div>
+      <div class="hk-card"><div class="glyph ar">بّ</div><h3>Shaddah — doubling</h3><p>The letter's sound is held and doubled.</p></div>
+      <div class="hk-card"><div class="glyph ar">بً بٍ بٌ</div><h3>Tanween — an / in / un</h3><p>Doubled fatha/kasra/damma, read as a nasal "n" ending.</p></div>
+      <div class="hk-card"><div class="glyph ar">با بو بي</div><h3>Madd letters — long vowels</h3><p>Alif, waw and ya after a matching short vowel stretch it: aa, uu, ii.</p></div>
+      <div class="hk-card"><div class="glyph ar">هٰذَا</div><h3>Dagger alif — a hidden "aa"</h3><p>A small vertical stroke stands in for a full alif. You'll see this often in both scripts — e.g. in <span class="ar">هَٰذَا</span> (haadhaa) and <span class="ar">ٱلرَّحْمَٰن</span> (ar-Rahmaan).</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Indo-Pak vs. Uthmani — what actually changes</h2>
+    <p class="section-note">Side by side: the habits your Ampara built, and what the Uthmani/Madani Mushaf does differently. None of this changes how the words sound — only how they're marked and laid out on the page.</p>
+    <div class="compare">
+      <div class="compare-col indopak">
+        <span class="tag">What you learned</span>
+        <h3>Indo-Pak script</h3>
+        <ul>
+          <li>Used across Bangladesh, India, Pakistan, Indonesia — this is almost certainly what your Ampara and early Mushaf were printed in.</li>
+          <li>Hamzat-ul-wasl (the "connecting" alif at the start of words like <span class="ex">ٱبْنُ</span>) is usually left as a plain alif. The rule for when to pronounce it is taught separately rather than marked on the page.</li>
+          <li>Page and line layout varies by publisher — not standardized to a fixed page count.</li>
+          <li>Letterforms follow a regional calligraphic style, slightly bolder and more condensed than Gulf printings.</li>
+        </ul>
+      </div>
+      <div class="compare-col uthmani">
+        <span class="tag">What's new</span>
+        <h3>Uthmani / Madani script</h3>
+        <ul>
+          <li>The King Fahd Complex (Madinah) standard — the script most widely used internationally and in most Tajweed courses and apps today.</li>
+          <li>Hamzat-ul-wasl is marked directly on the alif with a small head (<span class="ex">ٱ</span>), so the page itself tells you whether to pronounce it, instead of relying on a memorized rule.</li>
+          <li>Standardized to exactly 604 pages, 15 lines per page, with each Juz starting on a new page — useful for memorization and for following along with reciters.</li>
+          <li>A fixed set of stop signs (waqf marks) is used consistently: <span class="ar">مـ</span> stop, <span class="ar">لا</span> don't stop, <span class="ar">ج</span> optional stop, <span class="ar">صلى</span> / <span class="ar">قلى</span> preferable to stop/continue, <span class="ar">ۛ ۛ</span> stop at one of a pair.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">These are the well-documented, structural differences. Exact local conventions can vary slightly between printings and teachers — confirm the fine details with your Hifz/Tajweed teacher or a qualified aalim rather than relying on this page alone for anything you'll recite from memory.</div>
+  </section>
+
+  <section>
+    <h2>Practice words</h2>
+    <p class="section-note">Common words where the Uthmani-script marking is worth noticing on first read.</p>
+    <div class="scroll-x">
+      <table class="practice-table">
+        <thead><tr><th>Word</th><th>Reads as</th><th>What to notice</th></tr></thead>
+        <tbody>
+          <tr><td class="word">ٱلرَّحْمَٰن</td><td>ar-Rahmaan</td><td class="note">Dagger alif after the lam — no full alif letter, but a long "aa" sound</td></tr>
+          <tr><td class="word">هَٰذَا</td><td>haadhaa</td><td class="note">Same dagger alif pattern, very common demonstrative word</td></tr>
+          <tr><td class="word">ذَٰلِكَ</td><td>dhaalika</td><td class="note">Dagger alif again — "that"</td></tr>
+          <tr><td class="word">ٱبْنُ</td><td>ibnu / -bnu</td><td class="note">Hamzat-ul-wasl marked on the alif — pronounce only if starting a sentence with it</td></tr>
+          <tr><td class="word">ٱسْتَغْفِرُ</td><td>astaghfiru / -staghfiru</td><td class="note">Same hamzat-ul-wasl marking, common in dua</td></tr>
+          <tr><td class="word">لَّـٰكِنَّ</td><td>laakinna</td><td class="note">Dagger alif plus shaddah — "but, indeed"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to actually revise this</h2>
+    <div class="steps">
+      <div class="step-row"><div class="n">1</div><p>Open a Uthmani-script Mushaf — the Quran.com app/site defaults to it, or search for "Madani Mushaf" — and turn to a short surah from Juz Amma you already know well from Ampara.</p></div>
+      <div class="step-row"><div class="n">2</div><p>Read it aloud from memory first, the way you learned it. Then read it again looking carefully at the page, slowing down anywhere the shape looks unfamiliar.</p></div>
+      <div class="step-row"><div class="n">3</div><p>Whenever something looks different, check it against the comparison table above — it's almost always a hamzat-ul-wasl mark or a dagger alif, not a new sound.</p></div>
+      <div class="step-row"><div class="n">4</div><p>Once a handful of short surahs feel natural in Uthmani script, move to longer, less-memorized passages — the differences stop being noticeable within a few pages.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    Sources consulted for the Indo-Pak/Uthmani comparison: <a href="https://gtaf.org/support/what-is-the-difference-between-uthmanic-and-indopak-script/" target="_blank" rel="noopener">GTAF — Uthmanic vs. Indopak script</a>,
+    <a href="https://islamweb.net/en/fatwa/89482" target="_blank" rel="noopener">IslamWeb — differences between Qur'ans published in India and the Gulf</a>,
+    <a href="https://seekersguidance.org/answers/quran/rules-of-starting-and-stopping-during-recitation-from-a-mughali-script-mushaf/" target="_blank" rel="noopener">SeekersGuidance — starting/stopping in a Mughali-script Mushaf</a>.
+    This page is a study aid, not a tajweed authority — verify recitation details with a qualified teacher.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var letters = [
+    ["Alif","ا",true], ["Ba","ب"], ["Ta","ت"], ["Tha","ث"], ["Jim","ج"],
+    ["Ha (heavy)","ح"], ["Kha","خ"], ["Dal","د",true], ["Dhal","ذ",true], ["Ra","ر",true],
+    ["Zay","ز",true], ["Sin","س"], ["Shin","ش"], ["Sad","ص"], ["Dad","ض"],
+    ["Ta (heavy)","ط"], ["Za (heavy)","ظ"], ["Ayn","ع"], ["Ghayn","غ"], ["Fa","ف"],
+    ["Qaf","ق"], ["Kaf","ك"], ["Lam","ل"], ["Mim","م"], ["Nun","ن"],
+    ["Waw","و",true], ["Ha (light)","ه"], ["Ya","ي"]
+  ];
+  var T = "ـ"; // tatweel, forces contextual joining shapes
+  var grid = document.getElementById('letterGrid');
+  letters.forEach(function(l){
+    var name = l[0], ch = l[1], nc = l[2];
+    var card = document.createElement('div');
+    card.className = 'letter-card';
+    var initial = nc ? ch : ch + T;
+    var medial  = nc ? ch : T + ch + T;
+    var final_  = T + ch;
+    card.innerHTML =
+      '<div class="top"><span class="name">'+name+'</span>' + (nc ? '<span class="nc">NC</span>' : '') + '</div>' +
+      '<div class="forms">' +
+        '<div>Alone<div class="g">'+ch+'</div></div>' +
+        '<div>Start<div class="g">'+initial+'</div></div>' +
+        '<div>Mid<div class="g">'+medial+'</div></div>' +
+        '<div>End<div class="g">'+final_+'</div></div>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+})();
+</script>
