@@ -9,3 +9,4 @@ Course Code: Hum 4145 · Credit: 2.00 · Color: 🟢 `#2E7D32` (see [colors.md](
 - [Exam Questions](exam-questions/) — [Mid-term](exam-questions/mid-term.pdf) · [Final](exam-questions/final.pdf)
 - [Syllabus, Routine & Notices](syllabus-routine-notice.md)
 - [Notes](notes/) — formatted per [note-format.md](../../templates/note-format.md)
+  - [Lesson 1 Exam Prep Q/A (Bangla + English)](notes/2026-11-28-lesson-1-exam-prep-qa.md) — [PDF](notes/2026-11-28-lesson-1-exam-prep-qa.pdf), print Part 1 ([odd pages](notes/2026-11-28-lesson-1-exam-prep-qa-part1.pdf)) / Part 2 ([even pages](notes/2026-11-28-lesson-1-exam-prep-qa-part2.pdf)) for double-sided printing
